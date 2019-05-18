@@ -11,7 +11,7 @@ def main():
 
 	screen = pygame.display.set_mode((660, 660)) # Criar tela de 660x660
 	background = pygame.Surface(screen.get_size()) # Criar um plano e nomear como BKG
-	background.fill((randint(0, 255), randint(0, 255), randint(0, 255))) # Preencher o fundo com uma cor aleatoria
+	background.fill((255, 0, 255)) # Preencher o fundo com uma cor aleatoria
 	background = background.convert() # Converter o objeto para otimizar o jogo
 
 	# TABULEIRO
