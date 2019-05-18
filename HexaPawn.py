@@ -1,4 +1,4 @@
-import pygame, os
+import pygame
 from random import randint
 from Sprites import Pawn
 
@@ -45,18 +45,18 @@ def main():
 		background.blit(tab_array[x], (tab_pos[x]))
 
 	WA1 = Pawn("whitePawn", 5, 441) # Peao Branco em A1
-	#WA2 = Pawn("whitePawn") # Peao Branco em A2
-	#WA3 = Pawn("whitePawn") # Peao Branco em A3
-	#BC1 = Pawn("blackPawn") # Peao Preto em C1
-	#BC2 = Pawn("blackPawn") # Peao Preto em C2
-	#BC3 = Pawn("blackPawn") # Peao Preto em C3
+	WA2 = Pawn("whitePawn", 223, 441) # Peao Branco em A2
+	WA3 = Pawn("whitePawn", 441, 441) # Peao Branco em A3
+	BC1 = Pawn("blackPawn", 5, 5) # Peao Preto em C1
+	BC2 = Pawn("blackPawn", 223, 5) # Peao Preto em C2
+	BC3 = Pawn("blackPawn", 441, 5) # Peao Preto em C3
 
 	background.blit(WA1.image, (WA1.x, WA1.y)) # Mostrar peao A1 na tela
-	#background.blit(WA2.image, (223, 441)) # Mostrar peao A1 na tela
-	#background.blit(WA3.image, (441, 441)) # Mostrar peao A1 na tela
-	#background.blit(BC1.image, (5, 5)) # Mostrar peao A1 na tela
-	#background.blit(BC2.image, (223, 5)) # Mostrar peao A1 na tela
-	#background.blit(BC3.image, (441, 5)) # Mostrar peao A1 na tela
+	background.blit(WA2.image, (WA2.x, WA2.y)) # Mostrar peao A1 na tela
+	background.blit(WA3.image, (WA3.x, WA3.y)) # Mostrar peao A1 na tela
+	background.blit(BC1.image, (BC1.x, BC1.y)) # Mostrar peao A1 na tela
+	background.blit(BC2.image, (BC2.x, BC2.y)) # Mostrar peao A1 na tela
+	background.blit(BC3.image, (BC3.x, BC3.y)) # Mostrar peao A1 na tela
 
 	screen.blit(background, (0,0)) # Imprimir na tela
 
@@ -80,7 +80,6 @@ def main():
 					running = False # Sair do Jogo
 			
 			elif event.type == pygame.MOUSEMOTION: # Trata movimentos do mouse
-				# text = "Pos (%d, %d)" % event.pos # Mostra a posicao do mouse (x, y)
 				pass
 				
 			elif event.type == pygame.MOUSEBUTTONUP:
