@@ -80,3 +80,16 @@ def board_update(): # Funcao p/ atualizar a tela (tabuleiro)
     background.blit(BC3.image, (BC3.x, BC3.y)) # Mostrar peao B3 na tela
 
     screen.blit(background, (0, 0))
+
+def move_pawn(pawn): # Mover um peão no tabuleiro
+    if pawn.img == "whitePawn":
+        if not ((BC1.y == (pawn.y - 218)) or
+                (BC2.y == (pawn.y - 218)) or
+                (BC3.y == (pawn.y - 218))):
+            pawn.y -= 218
+            
+    elif pawn.img == "blackPawn":
+        if not ((WA1.y == (pawn.y + 218)) or 
+                (WA2.y == (pawn.y + 218)) or 
+                (WA3.y == (pawn.y + 218))):
+            pawn.y += 218

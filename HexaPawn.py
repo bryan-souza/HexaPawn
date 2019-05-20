@@ -1,10 +1,10 @@
 import pygame
-from Display import board_init, board_update, WA1, BC3
+from Display import board_init, board_update, move_pawn, WA1, BC3
 from Sprites import Pawn
 
 def main():
 
-	board_init()
+	board_init() # Carregar o tabuleiro
 
 	# O tempo (kak)
 	clock = pygame.time.Clock()
@@ -30,9 +30,9 @@ def main():
 				
 			elif event.type == pygame.MOUSEBUTTONUP:
 				if event.button == pygame.BUTTON_LEFT:
-					WA1.move()
-					BC3.move()
-					board_update()
+					move_pawn(WA1) # Mover o peão A1
+					move_pawn(BC3) # Mover o peão B3
+					board_update() # Atualizar o tabuleiro
 
 		# Atualizar a tela
 		pygame.display.flip()
