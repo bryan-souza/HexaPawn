@@ -21,10 +21,12 @@ C1 = None
 C2 = None
 C3 = None
 
+# Array usado para preencher o tabuleiro
 tab_array = [A1, A2, A3,
                 B1, B2, B3,
                 C1, C2, C3]
 
+# Array com as posicoes das casas do tabuleiro
 tab_pos = [(5, 441)	 , (5, 223)	 , (5, 5),
             (223, 441), (223, 223), (223, 5),
             (441, 441), (441, 223), (441, 5)]
@@ -37,18 +39,18 @@ BC2 = Pawn("blackPawn", 223, 5) # Peao Preto em C2
 BC3 = Pawn("blackPawn", 441, 5) # Peao Preto em C3
 
 def board_init():
-    pygame.init()
+    pygame.init() # Inicializar o pygame
 
     # Criar os "objetos" representando o tabuleiro
     for x in range(len(tab_array)):
-        tab_array[x] = pygame.Surface((213, 213))
-        if (x % 2 == 0):
-            tab_array[x].fill((0,0,0))
+        tab_array[x] = pygame.Surface((213, 213)) # Criar uma superficie de tamanho 213x213
+        if (x % 2 == 0): # Mudar a cor conforme o número da casa
+            tab_array[x].fill((0,0,0)) # Casa preta
         else:
-            tab_array[x].fill((255,255,255))
+            tab_array[x].fill((255,255,255)) # Casa branca
 
-        tab_array[x] = tab_array[x].convert()
-        background.blit(tab_array[x], (tab_pos[x]))
+        tab_array[x] = tab_array[x].convert() # Converter em objeto
+        background.blit(tab_array[x], (tab_pos[x])) # Mostrar na tela
 
     background.blit(WA1.image, (WA1.x, WA1.y)) # Mostrar peao A1 na tela
     background.blit(WA2.image, (WA2.x, WA2.y)) # Mostrar peao A2 na tela
@@ -59,7 +61,7 @@ def board_init():
 
     screen.blit(background, (0,0)) # Imprimir na tela
 
-def board_update():
+def board_update(): # Funcao p/ atualizar a tela (tabuleiro)
     for x in range(len(tab_array)):
         tab_array[x] = pygame.Surface((213, 213))
         if (x % 2 == 0):

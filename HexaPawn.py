@@ -1,5 +1,5 @@
 import pygame
-from Display import board_init, board_update
+from Display import board_init, board_update, WA1, BC3
 from Sprites import Pawn
 
 def main():
@@ -30,10 +30,8 @@ def main():
 				
 			elif event.type == pygame.MOUSEBUTTONUP:
 				if event.button == pygame.BUTTON_LEFT:
-					print("TERMINAR UM DIA KEK")
-					#if not (BC1.y == (WA1.y - 218)): 
-					#	WA1.y -= 218
-
+					WA1.move()
+					BC3.move()
 					board_update()
 
 		# Atualizar a tela
