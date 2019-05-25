@@ -30,7 +30,10 @@ def main():
 				
 			elif event.type == pygame.MOUSEBUTTONUP:
 				if event.button == pygame.BUTTON_LEFT:
-					pass
+					if not (capture_pawn(BC3, WA2) == False):
+						capture_pawn(BC3, WA2)
+					else:
+						move_pawn(BC3)
 
 		# Atualizar a tela
 		board_update()

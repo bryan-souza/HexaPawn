@@ -8,7 +8,7 @@ pygame.display.set_caption("HexaPawn") # Mudar o titulo do programa
 
 screen = pygame.display.set_mode((660, 660)) # Criar tela de 660x660
 background = pygame.Surface(screen.get_size()) # Criar um plano e nomear como BKG
-background.fill((255, 0, 255)) # Preencher o fundo com uma cor aleatoria
+background.fill((155, 0, 155)) # Preencher o fundo com uma cor aleatoria
 background = background.convert() # Converter o objeto para otimizar o jogo
 
 # TABULEIRO
@@ -106,7 +106,7 @@ def rnd_move(pawn_table):
 
 def capture_pawn(pawn, tgt):
     if pawn.img == "whitePawn":
-        if (tgt.y) == (pawn.y - 218) and (tgt.x) == ((pawn.x + 218) or (pawn.x - 218)):
+        if (tgt.y) == (pawn.y - 218) and ((tgt.x == (pawn.x + 218)) or (tgt.x == (pawn.x - 218))):
             pawn.x = tgt.x
             pawn.y = tgt.y
             tgt.x = 1000
@@ -114,8 +114,13 @@ def capture_pawn(pawn, tgt):
         else:
             print("Error 404: Enemy not Found!")
             return False
+
     elif pawn.img == "blackPawn":
-        if (tgt.y) == (pawn.y + 218) and (tgt.x) == ((pawn.x + 218) or (pawn.x - 218)):
-            print("Capturavel")
+        if (tgt.y) == (pawn.y + 218) and ((tgt.x == (pawn.x + 218)) or (tgt.x == (pawn.x - 218))):
+            pawn.x = tgt.x
+            pawn.y = tgt.y
+            tgt.x = 1000
+            tgt.y = 1000
         else:
             print("Error 404: Enemy not Found!")
+            return False
