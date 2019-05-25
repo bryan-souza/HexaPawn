@@ -1,6 +1,7 @@
 import pygame
 from Display import *
 from Sprites import Pawn
+from AI import auto_play
 
 def main():
 
@@ -30,10 +31,7 @@ def main():
 				
 			elif event.type == pygame.MOUSEBUTTONUP:
 				if event.button == pygame.BUTTON_LEFT:
-					if not (capture_pawn(BC3, WA2) == False):
-						capture_pawn(BC3, WA2)
-					else:
-						move_pawn(BC3)
+					auto_play()
 
 		# Atualizar a tela
 		board_update()

@@ -1,5 +1,4 @@
 import pygame
-import random
 from Sprites import Pawn
 
 logo = pygame.image.load("logo32x32.png") # Associar a imagem a variavel logo
@@ -99,10 +98,6 @@ def move_pawn(pawn): # Mover um peão no tabuleiro
             pawn.y += 218
     
     return pawn.y
-
-def rnd_move(pawn_table):
-    pawn = random.choice(pawn_table)
-    move_pawn(pawn)
 
 def capture_pawn(pawn, tgt):
     if pawn.img == "whitePawn":
