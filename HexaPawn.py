@@ -1,5 +1,5 @@
 import pygame
-from Display import *
+from Display import WA1, WA2, WA3, BC1, BC2, BC3, board_init, board_update
 from Sprites import Pawn
 from AI import auto_play
 
@@ -36,6 +36,17 @@ def main():
 		# Atualizar a tela
 		board_update()
 		pygame.display.flip()
+
+		# Checar se alguém ganhou
+		if WA1.y == 5 or WA2.y == 5 or WA3.y == 5:
+			text = "Branco Wins"
+			pygame.display.set_caption(text)
+			running = False
+			
+		elif BC1.y == 441 or BC2.y == 441 or BC3.y == 441:
+			text = "Preto Wins"
+			pygame.display.set_caption(text)
+			running = False
 
 if __name__ == "__main__":
 	main()

@@ -8,5 +8,6 @@ class Pawn(pygame.sprite.Sprite):
 		self.img = img
 		self.image = pygame.image.load((""+self.img+".png"))
 		self.rect = self.image.get_rect()
+		self.trn = 0
 		self.x = x
 		self.y = y

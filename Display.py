@@ -102,6 +102,7 @@ def move_pawn(pawn): # Mover um peão no tabuleiro
 def capture_pawn(pawn, tgt):
     if pawn.img == "whitePawn":
         if (tgt.y) == (pawn.y - 218) and ((tgt.x == (pawn.x + 218)) or (tgt.x == (pawn.x - 218))):
+            print("TRIGGERED")
             pawn.x = tgt.x
             pawn.y = tgt.y
             tgt.x = 1000
@@ -112,6 +113,7 @@ def capture_pawn(pawn, tgt):
 
     elif pawn.img == "blackPawn":
         if (tgt.y) == (pawn.y + 218) and ((tgt.x == (pawn.x + 218)) or (tgt.x == (pawn.x - 218))):
+            print("TRIGGERED")
             pawn.x = tgt.x
             pawn.y = tgt.y
             tgt.x = 1000
