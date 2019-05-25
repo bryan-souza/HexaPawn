@@ -1,5 +1,5 @@
 import pygame
-from Display import board_init, board_update, move_pawn, WA1, BC3
+from Display import *
 from Sprites import Pawn
 
 def main():
@@ -30,11 +30,10 @@ def main():
 				
 			elif event.type == pygame.MOUSEBUTTONUP:
 				if event.button == pygame.BUTTON_LEFT:
-					move_pawn(WA1) # Mover o peão A1
-					move_pawn(BC3) # Mover o peão B3
-					board_update() # Atualizar o tabuleiro
+					pass
 
 		# Atualizar a tela
+		board_update()
 		pygame.display.flip()
 
 if __name__ == "__main__":

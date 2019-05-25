@@ -1,4 +1,5 @@
 import pygame
+import random
 from Sprites import Pawn
 
 logo = pygame.image.load("logo32x32.png") # Associar a imagem a variavel logo
@@ -37,6 +38,9 @@ WA3 = Pawn("whitePawn", 441, 441) # Peao Branco em A3
 BC1 = Pawn("blackPawn", 5, 5) # Peao Preto em C1
 BC2 = Pawn("blackPawn", 223, 5) # Peao Preto em C2
 BC3 = Pawn("blackPawn", 441, 5) # Peao Preto em C3
+
+whiteTable = [WA1, WA2, WA3]
+blackTable = [BC1, BC2, BC3]
 
 def board_init():
     pygame.init() # Inicializar o pygame
@@ -83,13 +87,35 @@ def board_update(): # Funcao p/ atualizar a tela (tabuleiro)
 
 def move_pawn(pawn): # Mover um peão no tabuleiro
     if pawn.img == "whitePawn":
-        if not ((BC1.y == (pawn.y - 218)) or
-                (BC2.y == (pawn.y - 218)) or
-                (BC3.y == (pawn.y - 218))):
+        if not ((BC1.y == (pawn.y - 218) and BC1.x == pawn.x) or
+                (BC2.y == (pawn.y - 218) and BC2.x == pawn.x) or
+                (BC3.y == (pawn.y - 218) and BC3.x == pawn.x)):
             pawn.y -= 218
             
     elif pawn.img == "blackPawn":
-        if not ((WA1.y == (pawn.y + 218)) or 
-                (WA2.y == (pawn.y + 218)) or 
-                (WA3.y == (pawn.y + 218))):
+        if not ((WA1.y == (pawn.y + 218) and WA1.x == pawn.x) or 
+                (WA2.y == (pawn.y + 218) and WA2.x == pawn.x) or 
+                (WA3.y == (pawn.y + 218) and WA3.x == pawn.x)):
             pawn.y += 218
+    
+    return pawn.y
+
+def rnd_move(pawn_table):
+    pawn = random.choice(pawn_table)
+    move_pawn(pawn)
+
+def capture_pawn(pawn, tgt):
+    if pawn.img == "whitePawn":
+        if (tgt.y) == (pawn.y - 218) and (tgt.x) == ((pawn.x + 218) or (pawn.x - 218)):
+            pawn.x = tgt.x
+            pawn.y = tgt.y
+            tgt.x = 1000
+            tgt.y = 1000
+        else:
+            print("Error 404: Enemy not Found!")
+            return False
+    elif pawn.img == "blackPawn":
+        if (tgt.y) == (pawn.y + 218) and (tgt.x) == ((pawn.x + 218) or (pawn.x - 218)):
+            print("Capturavel")
+        else:
+            print("Error 404: Enemy not Found!")
