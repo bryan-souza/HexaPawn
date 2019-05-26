@@ -31,12 +31,12 @@ tab_pos = [(5, 441)	 , (5, 223)	 , (5, 5),
             (223, 441), (223, 223), (223, 5),
             (441, 441), (441, 223), (441, 5)]
 
-WA1 = Pawn("whitePawn", 5, 441) # Peao Branco em A1
-WA2 = Pawn("whitePawn", 223, 441) # Peao Branco em A2
-WA3 = Pawn("whitePawn", 441, 441) # Peao Branco em A3
-BC1 = Pawn("blackPawn", 5, 5) # Peao Preto em C1
-BC2 = Pawn("blackPawn", 223, 5) # Peao Preto em C2
-BC3 = Pawn("blackPawn", 441, 5) # Peao Preto em C3
+WA1 = Pawn("whitePawn", "WA1", 5, 441) # Peao Branco em A1
+WA2 = Pawn("whitePawn", "WA2", 223, 441) # Peao Branco em A2
+WA3 = Pawn("whitePawn", "WA3", 441, 441) # Peao Branco em A3
+BC1 = Pawn("blackPawn", "BC1", 5, 5) # Peao Preto em C1
+BC2 = Pawn("blackPawn", "BC2", 223, 5) # Peao Preto em C2
+BC3 = Pawn("blackPawn", "BC3", 441, 5) # Peao Preto em C3
 
 whiteTable = [WA1, WA2, WA3]
 blackTable = [BC1, BC2, BC3]
@@ -84,20 +84,35 @@ def board_update(): # Funcao p/ atualizar a tela (tabuleiro)
 
     screen.blit(background, (0, 0))
 
-def move_pawn(pawn): # Mover um peão no tabuleiro
+def move_test(pawn): # Testar se um movimento é possivel
     if pawn.img == "whitePawn":
-        if not ((BC1.y == (pawn.y - 218) and BC1.x == pawn.x) or
-                (BC2.y == (pawn.y - 218) and BC2.x == pawn.x) or
-                (BC3.y == (pawn.y - 218) and BC3.x == pawn.x)):
-            pawn.y -= 218
-            
+        if not (BC1.y == (pawn.y - 218) and (BC1.x == pawn.x) or
+                BC2.y == (pawn.y - 218) and (BC2.x == pawn.x) or
+                BC3.y == (pawn.y - 218) and (BC3.x == pawn.x) or
+                WA1.y == (pawn.y - 218) and (WA1.x == pawn.x) or
+                WA2.y == (pawn.y - 218) and (WA2.x == pawn.x) or
+                WA3.y == (pawn.y - 218) and (WA3.x == pawn.x)):
+            return True
+        else:
+            return False
     elif pawn.img == "blackPawn":
-        if not ((WA1.y == (pawn.y + 218) and WA1.x == pawn.x) or 
-                (WA2.y == (pawn.y + 218) and WA2.x == pawn.x) or 
-                (WA3.y == (pawn.y + 218) and WA3.x == pawn.x)):
-            pawn.y += 218
-    
-    return pawn.y
+        if not (BC1.y == (pawn.y + 218) and (BC1.x == pawn.x) or
+                BC2.y == (pawn.y + 218) and (BC2.x == pawn.x) or
+                BC3.y == (pawn.y + 218) and (BC3.x == pawn.x) or
+                WA1.y == (pawn.y + 218) and (WA1.x == pawn.x) or
+                WA2.y == (pawn.y + 218) and (WA2.x == pawn.x) or
+                WA3.y == (pawn.y + 218) and (WA3.x == pawn.x)):
+            return True
+        else:
+            return False
+
+def move_pawn(pawn): # Mover um peão no tabuleiro
+    if pawn.img == "whitePawn" and move_test(pawn) is not False:
+        pawn.y -= 218
+    elif pawn.img == "blackPawn" and move_test(pawn) is not False:
+        pawn.y += 218
+    else:
+        print("ERROR: NAO PODE MOVER ESSE PEAO")
 
 def capture_pawn(pawn, tgt):
     if pawn.img == "whitePawn":

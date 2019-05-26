@@ -1,7 +1,7 @@
 import pygame
-from Display import WA1, WA2, WA3, BC1, BC2, BC3, board_init, board_update
+from Display import WA1, WA2, WA3, BC1, BC2, BC3, board_init, board_update, move_pawn, capture_pawn, move_test
 from Sprites import Pawn
-from AI import auto_play
+from AI import auto_play, gen_arrays
 
 def main():
 
@@ -32,6 +32,13 @@ def main():
 			elif event.type == pygame.MOUSEBUTTONUP:
 				if event.button == pygame.BUTTON_LEFT:
 					auto_play()
+					gen_arrays()
+					print("BC1: ")  
+					print(BC1.mvs)
+					print("BC2: ") 
+					print(BC2.mvs)
+					print("BC3: ")
+					print(BC3.mvs)
 
 		# Atualizar a tela
 		board_update()
@@ -42,7 +49,7 @@ def main():
 			text = "Branco Wins"
 			pygame.display.set_caption(text)
 			running = False
-			
+
 		elif BC1.y == 441 or BC2.y == 441 or BC3.y == 441:
 			text = "Preto Wins"
 			pygame.display.set_caption(text)
