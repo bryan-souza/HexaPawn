@@ -1,7 +1,7 @@
 import pygame
 from Display import WA1, WA2, WA3, BC1, BC2, BC3, board_init, board_update, move_pawn, capture_pawn, move_test
 from Sprites import Pawn
-from AI import auto_play, gen_arrays
+from AI import auto_play, make_a_move
 
 def main():
 
@@ -32,13 +32,7 @@ def main():
 			elif event.type == pygame.MOUSEBUTTONUP:
 				if event.button == pygame.BUTTON_LEFT:
 					auto_play()
-					gen_arrays()
-					print("BC1: ")  
-					print(BC1.mvs)
-					print("BC2: ") 
-					print(BC2.mvs)
-					print("BC3: ")
-					print(BC3.mvs)
+					make_a_move()
 
 		# Atualizar a tela
 		board_update()

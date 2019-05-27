@@ -14,12 +14,11 @@ def auto_play(): # Jogar automaticamente (brancas)
             if ((blackTable[p].y == (pawn.y - 218)) and ((blackTable[p].x == (pawn.x + 218)) or
                                                         (blackTable[p].x == (pawn.x - 218)))):
                 cap.append(blackTable[p]) # Caso possivel, adicionar a cap
-        
-        if cap is None:
-            continue
+                sel = random.choice(cap)
+            else:
+                sel = None
 
-        if pawn.trn != 0: # Checar variavel de controle (ver Classe Pawn)
-            sel = random.choice(cap) # Escolher uma das capturas possiveis
+        if pawn.trn != 0 and sel != None: # Checar variavel de controle (ver Classe Pawn)
             if not (capture_pawn(pawn, sel) == False): # Caso seja possivel capturar...
                 capture_pawn(pawn, sel) # MATA ELE
         else:
@@ -44,18 +43,21 @@ def gen_arrays(): # Gerar sinapses da IA (até pq dá muito trabalho fazer manua
 
         if not (move_test(blackTable[p]) == False):
             blackTable[p].mvs.append(str(blackTable[p].trn) + "M" + blackTable[p].id)
-    
+
+def make_a_move():
+    gen_arrays()
     # Make-a-move (credits: Luska E)
     moves = []
     for x in range(len(blackTable)):
-        if blackTable[x].mvs is not None:
-            for y in range(len(blackTable[x].mvs)):
+        for y in range(len(blackTable[x].mvs)):
+            if blackTable[x].mvs is not None:
                 moves.append(blackTable[x].mvs[y])
     print(moves)
 
     move = random.choice(moves) # Escolher um movimento ao acaso
-    # "Desencriptar" o movimento -> N° do Turno + ID do Peao + Tipo de movimento
-    turn = move[0] # Detectar o turno em que deve ser adicionado
+    moves.clear()
+    # "Desencriptar" o movimento -> N° do Turno + Tipo de movimento + ID do Peao
+    # turn = move[0] # Detectar o turno em que deve ser adicionado
     tipo = move[1] # Detectar o tipo da acao (M/C)
     if tipo == "M":
         tgt = (move[2] + move[3] + move[4]) # Detectar o alvo da acao
@@ -63,17 +65,18 @@ def gen_arrays(): # Gerar sinapses da IA (até pq dá muito trabalho fazer manua
         pwn = (move[2] + move[3] + move[4])
         tgt = (move[5] + move[6] + move[7])
 
+    print(blackTable)
+    print(whiteTable)
+
     if tipo == "M": # Movimentar
         for p in range(len(blackTable)):
             if blackTable[p].id == tgt:
                 move_pawn(blackTable[p])
                 blackTable[p].trn += 1
-    
+
     elif tipo == "C": # Capturar
         for p in range(len(blackTable)):
             for e in range(len(whiteTable)):
-                if blackTable[p].id == pwn and whiteTable[e].id == tgt:
-                    capture_pawn(blackTable[p], whiteTable[e])
-                    blackTable[p].trn += 1
-
-                
+                if blackTable[p].id == pwn:
+                    if whiteTable[e].id == tgt:
+                        capture_pawn(pwn, tgt)

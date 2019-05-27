@@ -122,6 +122,7 @@ def capture_pawn(pawn, tgt):
             pawn.y = tgt.y
             tgt.x = 1000
             tgt.y = 1000
+            blackTable.remove(tgt)
         else:
             print("Error 404: Enemy not Found!")
             return False
@@ -133,6 +134,7 @@ def capture_pawn(pawn, tgt):
             pawn.y = tgt.y
             tgt.x = 1000
             tgt.y = 1000
+            whiteTable.remove(tgt)
         else:
             print("Error 404: Enemy not Found!")
             return False
