@@ -84,6 +84,37 @@ def board_update(): # Funcao p/ atualizar a tela (tabuleiro)
 
     screen.blit(background, (0, 0))
 
+def board_reset():
+    WA1.x = 5
+    WA1.y = 441
+
+    WA2.x = 223
+    WA2.y = 441
+
+    WA3.x = 441
+    WA3.y = 441
+
+    BC1.x = 5
+    BC1.y = 5
+
+    BC2.x = 223
+    BC2.y = 5
+    
+    BC3.x = 441
+    BC3.y = 5
+
+    whiteTable.clear()
+    whiteTable.append(WA1)
+    whiteTable.append(WA2)
+    whiteTable.append(WA3)
+
+    blackTable.clear()
+    blackTable.append(BC1)
+    blackTable.append(BC2)
+    blackTable.append(BC3)
+
+    board_init()
+
 def move_test(pawn): # Testar se um movimento é possivel
     if pawn.img == "whitePawn":
         if not (BC1.y == (pawn.y - 218) and (BC1.x == pawn.x) or
@@ -107,9 +138,9 @@ def move_test(pawn): # Testar se um movimento é possivel
             return False
 
 def move_pawn(pawn): # Mover um peão no tabuleiro
-    if pawn.img == "whitePawn" and move_test(pawn) is not False:
+    if pawn.img == "whitePawn" and (move_test(pawn) != False):
         pawn.y -= 218
-    elif pawn.img == "blackPawn" and move_test(pawn) is not False:
+    elif pawn.img == "blackPawn" and (move_test(pawn) != False):
         pawn.y += 218
     else:
         print("ERROR: NAO PODE MOVER ESSE PEAO")
