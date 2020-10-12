@@ -1,8 +1,4 @@
 # HexaPawn
 Basic A.I. using the game HexaPawn (Genetic Code)
-
-# Table of Contents 
-  Sprites:
-    - White Pawn
-    - Black Pawn
-    - HexaPawn Board
+Inspired by Kevin (Vsauce2)
+Video link: https://www.youtube.com/watch?v=sw7UAZNgGg8&t=1s
