@@ -55,7 +55,7 @@ def main():
                 print("dbg")
                 pawns[0].capture("right")
 
-        # Show the image on screen, at some position (x, y)
+        # Show the board on screen
         screen.blit( board, (0, 0) )
 
         # Blit all pawns to the screen
