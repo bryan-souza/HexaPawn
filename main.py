@@ -1,4 +1,5 @@
 from objects import Pawn
+from validators import Validator
 import pygame
 import os
 
@@ -28,17 +29,29 @@ def main():
     # Create a group to store all pawns in the game
     pawns = []
 
-    # X and Y axis positions
-    x_axis = [0, 214, 428]
-    y_axis = [0, 214, 428]
-
     # Please optimize this cringy pawn generator
-    pawns.append( Pawn("B1", "black", ( x_axis[0], y_axis[0] )) )
-    pawns.append( Pawn("B2", "black", ( x_axis[1], y_axis[0] )) )
-    pawns.append( Pawn("B3", "black", ( x_axis[2], y_axis[0] )) )
-    pawns.append( Pawn("W1", "white", ( x_axis[0], y_axis[2] )) )
-    pawns.append( Pawn("W2", "white", ( x_axis[1], y_axis[2] )) )
-    pawns.append( Pawn("W3", "white", ( x_axis[2], y_axis[2] )) )
+    pawns.append( Pawn("black", "a3"))
+    pawns.append( Pawn("black", "b3"))
+    pawns.append( Pawn("black", "c3"))
+    pawns.append( Pawn("white", "a1"))
+    pawns.append( Pawn("white", "b1"))
+    pawns.append( Pawn("white", "c1"))
+
+    # Instantiate a validator object
+    judge = Validator(pawns)
+
+    # DEBUG SESSION
+
+    move_cntr = 0
+
+    # List of movements to test the validator
+    # Whites Move, Blacks Move
+    session = [
+        'a2', 'bxa2',
+        'b2', 'a1',
+    ]
+
+    # END DEBUG SESSION
 
     # SETUP SECTION END
     while running: # Main loop
@@ -51,19 +64,23 @@ def main():
             if (event.type == pygame.QUIT):
                 running = False # Change the running state of the game
 
-            if (event.type == pygame.KEYDOWN) and (event.key == pygame.K_w):
-                print("dbg")
-                pawns[0].capture("right")
+            if ( (event.type == pygame.KEYDOWN) and (event.key == pygame.K_SPACE) ):
+                if (move_cntr < len(session)):
+                    judge.check(session[move_cntr])
+                    move_cntr += 1
 
         # Show the board on screen
         screen.blit( board, (0, 0) )
 
         # Blit all pawns to the screen
         # Python generators are faster than for loops :D
-        [ screen.blit(pawn.image, ( pawn.x, pawn.y )) for pawn in pawns ]
+        [ screen.blit(pawn.image, ( pawn.x, pawn.y )) for pawn in judge.group ]
 
         # Update the game display
         pygame.display.flip()
+
+        # Check if anyone won
+        judge.victory_validator()
 
 if __name__ == "__main__":
     main()
