@@ -5,10 +5,13 @@ class Pawn(pygame.sprite.Sprite):
     Put some decent documentation on me you punk
     Note: all the move validators will be stored at the ai module
     """
-    def __init__(self, color, start_pos):
+    def __init__(self, color, start_pos, silent=False):
         pygame.sprite.Sprite.__init__(self)
         self.color = color
-        self.image = pygame.image.load( os.path.join("sprites", color + "Pawn.png") ).convert_alpha()
+        
+        if (silent == False):
+            self.image = pygame.image.load( os.path.join("sprites", color + "Pawn.png") ).convert_alpha()
+        
         self.move_table = {
             "a1": [0, 428],
             "b1": [214, 428],

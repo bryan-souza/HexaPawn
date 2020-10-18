@@ -1,5 +1,5 @@
 from objects import Pawn
-from validators import Validator
+import validators
 import pygame
 import os
 
@@ -26,29 +26,17 @@ def main():
     # Load the board image
     board = pygame.image.load( os.path.join("sprites", "HexBoard.png") )
 
-    # Create a group to store all pawns in the game
-    pawns = []
-
-    # Please optimize this cringy pawn generator
-    pawns.append( Pawn("black", "a3"))
-    pawns.append( Pawn("black", "b3"))
-    pawns.append( Pawn("black", "c3"))
-    pawns.append( Pawn("white", "a1"))
-    pawns.append( Pawn("white", "b1"))
-    pawns.append( Pawn("white", "c1"))
-
-    # Instantiate a validator object
-    judge = Validator(pawns)
+    # Initialize resources
+    validators.init()
 
     # DEBUG SESSION
-
     move_cntr = 0
 
     # List of movements to test the validator
     # Whites Move, Blacks Move
     session = [
-        'a2', 'bxa2',
-        'b2', 'a1',
+        'a2', 'b2',
+        'c2'
     ]
 
     # END DEBUG SESSION
@@ -66,7 +54,7 @@ def main():
 
             if ( (event.type == pygame.KEYDOWN) and (event.key == pygame.K_SPACE) ):
                 if (move_cntr < len(session)):
-                    judge.check(session[move_cntr])
+                    validators.judge.check(session[move_cntr])
                     move_cntr += 1
 
         # Show the board on screen
@@ -74,13 +62,13 @@ def main():
 
         # Blit all pawns to the screen
         # Python generators are faster than for loops :D
-        [ screen.blit(pawn.image, ( pawn.x, pawn.y )) for pawn in judge.group ]
+        [ screen.blit(pawn.image, ( pawn.x, pawn.y )) for pawn in validators.judge.group ]
 
         # Update the game display
         pygame.display.flip()
 
         # Check if anyone won
-        judge.victory_validator()
+        validators.judge.victory_validator()
 
 if __name__ == "__main__":
     main()

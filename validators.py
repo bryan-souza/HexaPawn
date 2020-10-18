@@ -1,6 +1,24 @@
 import pygame
 from objects import Pawn
 
+def init():
+    """
+    Initialize globals
+    """
+    # Create a group to store all pawns in the game
+    global pawns
+    global judge
+
+    pawns = [
+        Pawn("black", "a3"),
+        Pawn("black", "b3"),
+        Pawn("black", "c3"),
+        Pawn("white", "a1"),
+        Pawn("white", "b1"),
+        Pawn("white", "c1")
+    ]
+    judge = Validator(pawns)
+
 class Validator:
     """
     Put some proper documentation on me, you punk
@@ -16,7 +34,7 @@ class Validator:
         
         # Create a dictionary containing all pawn ids
         # and its respective position in the group
-        for pawn in group:
+        for pawn in self.group:
             self.ids.update({pawn.id: pawn})
 
     # Pawn id updater
@@ -28,6 +46,7 @@ class Validator:
         for pawn in self.group:
             self.ids.update({pawn.id: pawn})
 
+    # Move tester
     def __move(self, pawn_id):
         # Try to fetch the pawn object
         try:
@@ -35,10 +54,9 @@ class Validator:
             pawn = self.ids[pawn_id]
 
             # Get the destination square by doing some maths :D
-            destination = f'{pawn_id[0]}{ str( int(pawn_id[1]) + (1 if (pawn.color == "white") else -1) ) }'
+            destination = f'{pawn_id[0]}{int(pawn_id[1]) + (1 if (pawn.color == "white") else -1)}'
         except KeyError:
-            print("[ERROR] Pawn not found")
-            return None
+            return [None, "[ERROR] Pawn not found"]
 
         # Tests if there's any pawn in the destination square
         test_list = [ True if (test.id == destination) else False for test in self.group ]
@@ -46,13 +64,13 @@ class Validator:
         if ( test_list.count(True) > 0 ):
             # Yep, there's a pawn ahead, so don't move
             # raise a debug message
-            print("[ERROR] Can't move this pawn, there's another pawn at the destination")
+            return [False, "[ERROR] Can't move this pawn, there's another pawn at the destination"]
 
         else:
             # There's no pawn ahead, so it can move
-            pawn.update_id(destination)
-            print(f"[MOVE] {destination}")
+            return [True, f"[MOVE] {destination}"]
 
+    # Capture tester
     def __capture(self, pawn_id, target):
         # Try to fetch the required objects
         try:
@@ -63,41 +81,27 @@ class Validator:
             tgt = self.ids[target]
 
         except KeyError:
-            print("[ERROR] Pawn not found")
-            return None
+            return [None, "[ERROR] Pawn not found"]
 
         # Check if the pawns have different colors
         if (pawn.color != tgt.color):
-            # Remove the target pawn
-            for p in self.group:
-                if (p.id == target):
-                    rm_index = self.group.index(p)
-                    break
-            else:
-                print("[ACHIEVEMENT] You weren't supposed to do that")
+            return [True, f'[CAPTURE] {pawn_id[0]}x{tgt.id}'] # Can capture
 
-            self.group.pop(rm_index)
-
-            # Move the pawn to it's destination
-            pawn.update_id(target)
-
-            # Logs the movement
-            print(f'[CAPTURE] {pawn_id[0]}x{target}')
         else:
-            print("[ERROR] The pawns have the same color")
+            return [False, "[ERROR] The pawns have the same color"] # Can't capture
 
     # Reset the board state
-    def __reset(self):
+    def reset(self, silent=False):
         # Clear the pawn groups
         self.group = []
 
         # Recreate all pawns at its initial state
-        self.group.append( Pawn("black", "a3"))
-        self.group.append( Pawn("black", "b3"))
-        self.group.append( Pawn("black", "c3"))
-        self.group.append( Pawn("white", "a1"))
-        self.group.append( Pawn("white", "b1"))
-        self.group.append( Pawn("white", "c1"))
+        self.group.append( Pawn("black", "a3", silent))
+        self.group.append( Pawn("black", "b3", silent))
+        self.group.append( Pawn("black", "c3", silent))
+        self.group.append( Pawn("white", "a1", silent))
+        self.group.append( Pawn("white", "b1", silent))
+        self.group.append( Pawn("white", "c1", silent))
 
         # Update the id list
         self.__update_ids()
@@ -107,7 +111,7 @@ class Validator:
         
     # Move decoder; transforms strings (movecode)
     # into pawn actions
-    def check(self, movecode):
+    def check(self, movecode, silent=False):
         """
         Pawn move decoder.
         Checks and executes (if possible) the given movecodes;
@@ -124,24 +128,44 @@ class Validator:
         if ( len(movecode) == 2 ):
             # Pawn movement
             pawn_id = f'{movecode[0]}{int(movecode[1]) + (-1 if (self.move_counter % 2 == 0) else 1)}'
-            self.__move(pawn_id)
-            self.move_counter += 1
-            self.__update_ids()
+            result = self.__move(pawn_id)
+            if (result[0] == True):
+                self.ids[pawn_id].update_id(movecode)
+                self.move_counter += 1
+                self.__update_ids()
+
+            if (silent == False):
+                print(result[1])
 
         elif ( len(movecode) == 4 ):
             # Pawn capture
             pawn_id = f'{movecode[0]}{int(movecode[3]) + (-1 if (self.move_counter % 2 == 0) else 1)}'
             target = f'{movecode[2]}{movecode[3]}'
-            self.__capture(pawn_id, target)
-            self.move_counter += 1
-            self.__update_ids()
+            result = self.__capture(pawn_id, target)
+
+            if (result[0] == True):
+                # Remove the target pawn
+                for p in self.group:
+                    if (p.id == target):
+                        rm_index = self.group.index(p)
+                        break
+                else:
+                    print("[ACHIEVEMENT] You weren't supposed to do that")
+
+                self.group.pop(rm_index)
+                self.ids[pawn_id].update_id(target)
+                self.move_counter += 1
+                self.__update_ids()
+            
+            if (silent == False):
+                print(result[1]) # Logs the move result
 
         else:
             print("[ERROR] Invalid movecode")
 
     # Checks if any of the sides have won
     # Resets the game if a victory is detected
-    def victory_validator(self):
+    def victory_validator(self, silent=False):
         """
         Da Rules:
           You (Whites) win if:
@@ -157,30 +181,38 @@ class Validator:
         for k, v in self.ids.items():
             # Check if any black pawn crossed the board
             if (k in ['a1', 'b1', 'c1'] and v.color == 'black'):
-                print("[VICTORY] Blacks win")
+                if (silent == False):
+                    print("[VICTORY] Blacks win")
+
                 self.black_wins += 1
-                self.__reset()
+                self.reset(silent)
                 return None
 
             # Check if any white pawn crossed the board
             if (k in ['a3', 'b3', 'c3'] and v.color == 'white'):
-                print("[VICTORY] Whites win")
+                if (silent == False):
+                    print("[VICTORY] Whites win")
+
                 self.white_wins += 1
-                self.__reset()
+                self.reset(silent)
                 return None
 
         # Check if there's only one pawn color present in the board
         colors = [ pawn.color for pawn in self.group ]
         if (colors.count('white') == 0):
-            print("[VICTORY] Black win")
+            if (silent == False):
+                print("[VICTORY] Black win")
+                
             self.black_wins += 1
-            self.__reset()
+            self.reset(silent)
             return None
         
         if (colors.count('black') == 0):
-            print("[VICTORY] Whites win")
+            if (silent == False):
+                print("[VICTORY] Whites win")
+
             self.white_wins += 1
-            self.__reset()
+            self.reset(silent)
             return None
 
         # Check if there's any valid movement left
@@ -205,6 +237,8 @@ class Validator:
                 for col in col_dict[ pawn.id[0] ]:
                     try:
                         obj = self.ids[f'{col}{int(pawn.id[1]) + (1 if (pawn.color == "white") else - 1)}']
+                        if (obj.color == pawn.color):
+                            exception_cntr += 1
                     except:
                         exception_cntr += 1
 
@@ -222,7 +256,16 @@ class Validator:
 
         # Finally, checks if there's no valid movement left
         if (states.count(True) == 0):
-            print("[VICTORY] Blacks win")
+            if (silent == False):
+                print("[VICTORY] Blacks win")
+
             self.black_wins += 1
-            self.__reset()
+            self.reset(silent)
             return None
+
+    # Checkers for AI
+    def move_check(self, pawn_id):
+        return self.__move(pawn_id)
+
+    def capture_check(self, pawn_id, target):
+        return self.__capture(pawn_id, target)
