@@ -1,24 +1,6 @@
 import pygame
 from objects import Pawn
 
-def init():
-    """
-    Initialize globals
-    """
-    # Create a group to store all pawns in the game
-    global pawns
-    global judge
-
-    pawns = [
-        Pawn("black", "a3"),
-        Pawn("black", "b3"),
-        Pawn("black", "c3"),
-        Pawn("white", "a1"),
-        Pawn("white", "b1"),
-        Pawn("white", "c1")
-    ]
-    judge = Validator(pawns)
-
 class Validator:
     """
     Put some proper documentation on me, you punk
@@ -163,6 +145,9 @@ class Validator:
         else:
             print("[ERROR] Invalid movecode")
 
+        # Check if anyone won
+        self.victory_validator()
+
     # Checks if any of the sides have won
     # Resets the game if a victory is detected
     def victory_validator(self, silent=False):
@@ -181,18 +166,12 @@ class Validator:
         for k, v in self.ids.items():
             # Check if any black pawn crossed the board
             if (k in ['a1', 'b1', 'c1'] and v.color == 'black'):
-                if (silent == False):
-                    print("[VICTORY] Blacks win")
-
                 self.black_wins += 1
                 self.reset(silent)
                 return None
 
             # Check if any white pawn crossed the board
             if (k in ['a3', 'b3', 'c3'] and v.color == 'white'):
-                if (silent == False):
-                    print("[VICTORY] Whites win")
-
                 self.white_wins += 1
                 self.reset(silent)
                 return None
@@ -200,17 +179,11 @@ class Validator:
         # Check if there's only one pawn color present in the board
         colors = [ pawn.color for pawn in self.group ]
         if (colors.count('white') == 0):
-            if (silent == False):
-                print("[VICTORY] Black win")
-                
             self.black_wins += 1
             self.reset(silent)
             return None
         
         if (colors.count('black') == 0):
-            if (silent == False):
-                print("[VICTORY] Whites win")
-
             self.white_wins += 1
             self.reset(silent)
             return None
@@ -256,9 +229,6 @@ class Validator:
 
         # Finally, checks if there's no valid movement left
         if (states.count(True) == 0):
-            if (silent == False):
-                print("[VICTORY] Blacks win")
-
             self.black_wins += 1
             self.reset(silent)
             return None

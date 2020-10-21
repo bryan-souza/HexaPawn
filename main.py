@@ -1,7 +1,8 @@
-from objects import Pawn
-import validators
+import bus
 import pygame
 import os
+from objects import Pawn
+from ai import autoplay
 
 def main():
     # SETUP SECTION
@@ -27,19 +28,7 @@ def main():
     board = pygame.image.load( os.path.join("sprites", "HexBoard.png") )
 
     # Initialize resources
-    validators.init()
-
-    # DEBUG SESSION
-    move_cntr = 0
-
-    # List of movements to test the validator
-    # Whites Move, Blacks Move
-    session = [
-        'a2', 'b2',
-        'c2'
-    ]
-
-    # END DEBUG SESSION
+    bus.init()
 
     # SETUP SECTION END
     while running: # Main loop
@@ -53,22 +42,17 @@ def main():
                 running = False # Change the running state of the game
 
             if ( (event.type == pygame.KEYDOWN) and (event.key == pygame.K_SPACE) ):
-                if (move_cntr < len(session)):
-                    validators.judge.check(session[move_cntr])
-                    move_cntr += 1
+                autoplay()
 
         # Show the board on screen
         screen.blit( board, (0, 0) )
 
         # Blit all pawns to the screen
         # Python generators are faster than for loops :D
-        [ screen.blit(pawn.image, ( pawn.x, pawn.y )) for pawn in validators.judge.group ]
+        [ screen.blit(pawn.image, ( pawn.x, pawn.y )) for pawn in bus.judge.group ]
 
         # Update the game display
         pygame.display.flip()
-
-        # Check if anyone won
-        validators.judge.victory_validator()
 
 if __name__ == "__main__":
     main()
