@@ -5,6 +5,7 @@ from objects import Pawn
 from graphviz import Graph
 from uuid import uuid1
 from random import choice
+from PyPDF2 import PdfFileReader, PdfFileWriter
 
 class Node():
     # Constructor
@@ -14,7 +15,7 @@ class Node():
 
 class Ai():
     # Constructor
-    def __init__(self, mode='both'):
+    def __init__(self, mode='exclusive'):
         self.pawns = [
             Pawn("black", "a3", silent=True),
             Pawn("black", "b3", silent=True),
@@ -26,6 +27,7 @@ class Ai():
         self.judge = Validator(self.pawns)
         self.nodes = [] # Node tree
         self.stack = [] # Move call stack
+        self.generation = 0 # Generation counter
 
         # Decision making
         self.wins = 0
@@ -43,9 +45,8 @@ class Ai():
         for move in entry_moves:
             self.nodes.append( self.__make_nodes([move]) )
 
-        # Plotting
-        self.dot = Graph(comment='HexaPawn', filename=os.path.join('plots','HexaPawn.gv'))
-        self.dot.attr(center='true', rankdir='LR', ranksep='5.0 equally')
+        # Initial state snapshot graph
+        self.__snapshot()
 
     # Generates nodes (neurons)
     def __make_nodes(self, movecode):
@@ -133,6 +134,8 @@ class Ai():
             print('[VICTORY] Blacks wins')
             if (self.mode in ['inclusive', 'both']):
                 parent.children.append(node)
+                self.generation += 1
+                self.__snapshot()
             
             # Clear the move stack, since the judge reseted
             self.stack = []
@@ -144,6 +147,8 @@ class Ai():
             print('[VICTORY] White wins')
             if (self.mode in ['exclusive', 'both']):
                 parent.children.remove(node)
+                self.generation += 1
+                self.__snapshot()
 
             # Clear the move stack, since the judge reseted
             self.stack = []
@@ -160,8 +165,12 @@ class Ai():
 
         return actual_node
 
-    # Plot a graph containing all neurons
-    def plot_nodes(self):
+    # Plot a graph containing all neurons at current state
+    def __snapshot(self):
+        # Initializing
+        dot = Graph(comment='HexaPawn', filename=os.path.join('plots','HexaPawn.gv'))
+        dot.attr(center='true', rankdir='LR', ranksep='5.0 equally')
+
         # Create entry layer
         layers = {}
         links = []
@@ -195,10 +204,34 @@ class Ai():
 
         # Create the links
         for x in range(6):
-            self.__linker(layers, links, x)
+            self.__linker(layers, links, x, dot)
 
         # Finally, render the graph
-        self.dot.render()
+        dot.render()
+
+        # Rename the output according to the current generation
+        os.rename( os.path.join('plots', 'HexaPawn.gv.pdf'), os.path.join('plots', f'{self.generation}.pdf') )
+
+    # Merge all snapshots
+    def plot(self):
+        pdf_writer = PdfFileWriter()
+
+        for x in range(self.generation + 1):
+            pdf_reader = PdfFileReader( os.path.join('plots', f'{x}.pdf') )
+            for page in range(pdf_reader.getNumPages()):
+                # Add each page to the writer object
+                pdf_writer.addPage(pdf_reader.getPage(page))
+            
+
+        # Write out the merged PDF
+        with open( os.path.join('plots', 'generations.pdf') , 'wb') as out:
+            pdf_writer.write(out)
+
+        # Delete generation snapshot 
+        # (since it was added to the main file
+        # we don't need it anymore)
+        for x in range(self.generation + 1):
+            os.remove( os.path.join('plots', f'{x}.pdf') )
 
     def __create_layer(self, parent_nodes):
         layer = {}
@@ -208,7 +241,7 @@ class Ai():
 
         return layer
 
-    def __linker(self, layers, links, depth):
+    def __linker(self, layers, links, depth, dot):
         # Fetch layers
         try:
             layer = layers[f'{depth}']
@@ -218,13 +251,13 @@ class Ai():
 
         link = links[depth]
         for lk in link:
-            self.dot.node(name=layer[ lk[0] ], label=lk[0])
+            dot.node(name=layer[ lk[0] ], label=lk[0])
             tail = layer[ lk[0] ]
 
-            self.dot.node(name=sublayer[ lk[1] ], label=lk[1])
+            dot.node(name=sublayer[ lk[1] ], label=lk[1])
             head = sublayer[ lk[1] ]
 
-            self.dot.edge(tail, head)
+            dot.edge(tail, head)
 
 def autoplay():
     # Column capture resolver
