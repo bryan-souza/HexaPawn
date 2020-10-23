@@ -172,6 +172,11 @@ class Ai():
     # Plot a graph containing all neurons at current state
     def __snapshot(self):
         # Initializing
+        try: # Creates the plots dir if it doesn't exist
+            os.mkdir('plots')
+        except FileExistsError:
+            pass
+
         dot = Graph(
             comment='HexaPawn',
             filename=os.path.join('plots', 'HexaPawn.gv')
