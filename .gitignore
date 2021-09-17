@@ -1,4 +1,6 @@
+.DS_Store
+.vscode/
 plots/
-plots/*
 __pycache__/
-__pycache__/*
+docs/build/
+docs/source/_templates/
