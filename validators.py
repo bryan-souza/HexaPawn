@@ -132,7 +132,7 @@ class Validator:
                         rm_index = self.group.index(p)
                         break
                 else:
-                    print("[ACHIEVEMENT] You weren't supposed to do that")
+                    print("\n\n[ACHIEVEMENT] Schrödinger's Pawn\nCause a pawn to exist and don't exist at the same time\n\n")
 
                 self.group.pop(rm_index)
                 self.ids[pawn_id].update_id(target)
@@ -162,6 +162,10 @@ class Validator:
             B: Capture all of your pawns
             C: There's no valid movement left
         """
+        # Display meme achievement
+        if (self.black_wins == 10):
+            print("\n\n[ACHIEVEMENT] Thanos vs Iron Man\n'I am... Inevitable'")
+
         # Check if any pawn crossed the board
         for k, v in self.ids.items():
             # Check if any black pawn crossed the board
@@ -191,41 +195,17 @@ class Validator:
         # Check if there's any valid movement left
         states = []
         for pawn in self.group:
+            moves = self.get_movelist(pawn)
             # Check for movementation
-            if ( list(self.ids.keys()).count(f'{pawn.id[0]}{int(pawn.id[1]) + (1 if (pawn.color == "white") else - 1)}') > 0 ):
-                # Can't move, False
-                # Check for possible captures
-
-                # Column capture resolver
-                col_dict = {
-                    "a": ["b"],
-                    "b": ["a", "c"],
-                    "c": ["b"]
-                }
-
-                # Counts how many pawns the selected pawn can't capture
-                exception_cntr = 0
-
-                # Checks for pawn objects at the target positions
-                for col in col_dict[ pawn.id[0] ]:
-                    try:
-                        obj = self.ids[f'{col}{int(pawn.id[1]) + (1 if (pawn.color == "white") else - 1)}']
-                        if (obj.color == pawn.color):
-                            exception_cntr += 1
-                    except:
-                        exception_cntr += 1
-
-                # If the exception counter = the length of testable columns
-                # this means that the selected pawn can't capture any pawn
-                if (exception_cntr == len(col_dict[ pawn.id[0] ])):
-                    # Can't capture, False
-                    states.append(False)
-                else:
-                    # Can capture, return True
-                    states.append(True)
-            else:
-                # Can move, so there's a valid movement, True
+            # If any movecode has length 2 (a movement)
+            if ( any([True if len(x) == 2 else False for x in moves]) ):
                 states.append(True)
+            elif ( any([True if len(x) == 4 else False for x in moves]) ):
+                # This pawn can capture another pawn, so there's still a valid move
+                states.append(True)
+            else:
+                # No valid moves for that pawn
+                states.append(False)
 
         # Finally, checks if there's no valid movement left
         if (states.count(True) == 0):
@@ -239,3 +219,35 @@ class Validator:
 
     def capture_check(self, pawn_id, target):
         return self.__capture(pawn_id, target)
+
+    def get_movelist(self, pawn):
+        """
+        Get all possible movements for a pawn
+        at the current game state
+
+        Returns:
+        moves : list[str]
+            A list of strings containing the movecodes
+            for all possible movements for a pawn
+
+        """
+        # Init
+        moves = []
+        col_dict = {
+            "a": ["b"],
+            "b": ["a", "c"],
+            "c": ["b"]
+        }
+
+        # Check for movements
+        if (self.move_check(pawn.id)[0] == True):
+            moves.append(
+                f'{pawn.id[0]}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')
+
+        # Check for captures
+        for col in col_dict[pawn.id[0]]:
+            if (self.capture_check(pawn.id, f'{col}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')[0] == True):
+                moves.append(
+                    f'{pawn.id[0]}x{col}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')
+
+        return moves
