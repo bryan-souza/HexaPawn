@@ -15,7 +15,8 @@ Video link: https://www.youtube.com/watch?v=sw7UAZNgGg8&t=1s
  - Low quality memes
 
 ## Installation
-First of all: make sure that you have python 3.6+ installed
+First of all: make sure that you have python 3.6+ installed\
+If you want to use the Graph plotting functions, you'll also need [Graphviz](https://graphviz.org/download/)
 
 ### Windows
 ```python -m pip install -r requirements.txt```
