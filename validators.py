@@ -12,6 +12,7 @@ class Validator:
     def __init__(self, group):
         self.group = group
         self.ids = {}
+        self.stack = [] # Move call stack for the entire game
         self.move_counter = 0
         self.black_wins = 0
         self.white_wins = 0
@@ -144,11 +145,13 @@ class Validator:
             if (silent == False):
                 print(result[1]) # Logs the move result
 
+        # Since a valid movement was made, add it to
+        # the game call stack'
+        if (result[0]):
+            self.stack.append(movecode)
+
         else:
             print("[ERROR] Invalid movecode")
-
-        # Check if anyone won
-        self.victory_validator()
 
     # Checks if any of the sides have won
     # Resets the game if a victory is detected
@@ -173,26 +176,26 @@ class Validator:
             # Check if any black pawn crossed the board
             if (k in ['a1', 'b1', 'c1'] and v.color == 'black'):
                 self.black_wins += 1
-                self.reset(silent)
-                return None
+                if silent: self.reset(silent)
+                return 'black'
 
             # Check if any white pawn crossed the board
             if (k in ['a3', 'b3', 'c3'] and v.color == 'white'):
                 self.white_wins += 1
-                self.reset(silent)
-                return None
+                if silent: self.reset(silent)
+                return 'white'
 
         # Check if there's only one pawn color present in the board
         colors = [ pawn.color for pawn in self.group ]
         if (colors.count('white') == 0):
             self.black_wins += 1
-            self.reset(silent)
-            return None
+            if silent: self.reset(silent)
+            return 'black'
         
         if (colors.count('black') == 0):
             self.white_wins += 1
-            self.reset(silent)
-            return None
+            if silent: self.reset(silent)
+            return 'white'
 
         # Check if there's any valid movement left
         states = []
@@ -212,15 +215,8 @@ class Validator:
         # Finally, checks if there's no valid movement left
         if (states.count(True) == 0):
             self.black_wins += 1
-            self.reset(silent)
-            return None
-
-    # Checkers for AI
-    def move_check(self, pawn_id):
-        return self.__move(pawn_id)
-
-    def capture_check(self, pawn_id, target):
-        return self.__capture(pawn_id, target)
+            if silent: self.reset(silent)
+            return 'black'
 
     def get_movelist(self, pawn):
         """
@@ -242,13 +238,13 @@ class Validator:
         }
 
         # Check for movements
-        if (self.move_check(pawn.id)[0] == True):
+        if (self.__move(pawn.id)[0] == True):
             moves.append(
                 f'{pawn.id[0]}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')
 
         # Check for captures
         for col in col_dict[pawn.id[0]]:
-            if (self.capture_check(pawn.id, f'{col}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')[0] == True):
+            if (self.__capture(pawn.id, f'{col}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')[0] == True):
                 moves.append(
                     f'{pawn.id[0]}x{col}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')
 

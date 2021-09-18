@@ -31,10 +31,8 @@ class Ai():
             Pawn("white", "b1", silent=True),
             Pawn("white", "c1", silent=True)
         ]
-        self.judge = Validator(self.pawns)
         self.game_judge = game_judge
         self.nodes = []  # Node tree
-        self.stack = []  # Move call stack
         self.generation = 0  # Generation counter
 
         # Decision making
@@ -60,51 +58,37 @@ class Ai():
     def __make_nodes(self, movecode):
         # Reset the judge, so it can make
         # all moves from the beginning
-        self.judge.reset(True)
+        judge = Validator(self.pawns)
+        judge.reset(True)
 
         # Execute the moves
         for code in movecode:
-            self.judge.check(code, silent=True)
+            judge.check(code, silent=True)
 
         # Results for this state
         children = []
 
         # Check if the moves resulted in victory
-        self.judge.victory_validator(True)
-        if (self.judge.white_wins == 1):
-            self.judge.white_wins = 0
+        judge.victory_validator(True)
+        if (judge.white_wins == 1):
+            judge.white_wins = 0
             return Node(movecode[::-1][0], children=[])
-        elif (self.judge.black_wins == 1):
-            self.judge.black_wins = 0
+        elif (judge.black_wins == 1):
+            judge.black_wins = 0
             return Node(movecode[::-1][0], children=[])
 
         # Sort pawns by color
         blacks = []
         whites = []
-        for pawn in self.judge.group:
+        for pawn in judge.group:
             if (pawn.color == 'black'):
                 blacks.append(pawn)
             else:
                 whites.append(pawn)
 
-        col_dict = {
-            "a": ["b"],
-            "b": ["a", "c"],
-            "c": ["b"]
-        }
-
         # Check for all possible movements
         for pawn in (whites if (len(movecode) % 2 == 0) else blacks):
-            # Check for movements
-            if (self.judge.move_check(pawn.id)[0] == True):
-                children.append(
-                    f'{pawn.id[0]}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')
-
-            # Check for captures
-            for col in col_dict[pawn.id[0]]:
-                if (self.judge.capture_check(pawn.id, f'{col}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')[0] == True):
-                    children.append(
-                        f'{pawn.id[0]}x{col}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')
+            [ children.append(move) for move in judge.get_movelist(pawn)]
 
         for node in children:
             idx = children.index(node)
@@ -115,53 +99,54 @@ class Ai():
         return Node(movecode[::-1][0], children)
 
     # Access the corresponding node
-    def step(self, white_move):
-        self.stack.append(white_move)
-        self.__victory_check()
-
-        if (self.stack != []):
-            node = self.__traceroute(self.stack)
+    def step(self):
+        if (self.game_judge.stack != []):
+            node = self.__traceroute(self.game_judge.stack)
             move = choice(node.children)
-            self.stack.append(move.node_id)
             self.game_judge.check(move.node_id)
-            self.__victory_check()
 
-    def __victory_check(self):
+
+    def update_nodes(self, color):
         # Get last black decision node (parent) and the child
-        if (len(self.stack) > 1):
-            if (len(self.stack) % 2 == 0):
-                parent = self.__traceroute(self.stack[0:len(self.stack)-1])
-                node = self.__traceroute(self.stack)
+        if (len(self.game_judge.stack) > 1):
+            if (len(self.game_judge.stack) % 2 == 0):
+                parent = self.__traceroute(self.game_judge.stack[0:len(self.game_judge.stack)-1])
+                node = self.__traceroute(self.game_judge.stack)
             else:
-                parent = self.__traceroute(self.stack[0:len(self.stack)-2])
-                node = self.__traceroute(self.stack[0:len(self.stack)-1])
+                parent = self.__traceroute(self.game_judge.stack[0:len(self.game_judge.stack)-2])
+                node = self.__traceroute(self.game_judge.stack[0:len(self.game_judge.stack)-1])
 
         # Compare the new win state
-        if (self.game_judge.black_wins > self.wins):
+        if (color == 'black'):
             # The last move resulted in a win
             # copy that child if mode is inclusive or both
             print('[VICTORY] Blacks wins')
             if (self.mode in ['inclusive', 'both']):
                 parent.children.append(node)
-                self.generation += 1
-                if ( config['enable_plots'] ): self.__snapshot()
 
-            # Clear the move stack, since the judge reseted
-            self.stack = []
+            # Update game score
             self.wins += 1
 
-        elif (self.game_judge.white_wins > self.losses):
+            # Update other game informations
+            self.game_judge.stack = []
+            self.generation += 1
+            if ( config['enable_plots'] ): self.__snapshot()
+
+        elif (color == 'white'):
             # The last move resulted in a lose
             # remove that child if mode is exclusive or both
             print('[VICTORY] White wins')
             if (self.mode in ['exclusive', 'both']):
                 parent.children.remove(node)
-                self.generation += 1
-                if ( config['enable_plots'] ): self.__snapshot()
-
-            # Clear the move stack, since the judge reseted
-            self.stack = []
+        
+            # Update game score
             self.losses += 1
+
+            # Update other game informations
+            self.game_judge.stack = []
+            self.generation += 1
+            if ( config['enable_plots'] ): self.__snapshot()
+
 
     # Advances in the tree
     def __traceroute(self, movecodes):

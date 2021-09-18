@@ -2,7 +2,7 @@ import pygame
 import os
 from pygame import time
 import pygame_gui
-from json import dump, load
+from json import load
 from random import choice
 from objects import Pawn, Outline
 from ai import Ai
@@ -136,10 +136,38 @@ class Game():
             pygame.time.wait(250)
             self.judge.reset()
 
+    def update(self):
+        # Show the board on screen
+        self.screen.blit(self.board, (0, 0))
+
+        # Blit all pawns to the screen
+        # Python generators are faster than for loops :D
+        [self.screen.blit(pawn.image, (pawn.x, pawn.y)) for pawn in self.judge.group]
+
+        # Blit all outlines on screen
+        if (self.outlines != []):
+            [out.update() for out in self.outlines]
+            [self.screen.blit(out.image, out.position) for out in self.outlines]
+
+        # Draw UI elements on the screen
+        self.ui.manager.draw_ui(self.screen)
+
+        # Update the game display
+        pygame.display.flip()
+
     def run(self):
         try:
             while self.running:  # Main loop
+                turn = 'player' if ( len(self.judge.stack) % 2 == 0 ) else 'ai'
                 time_delta = self.clock.tick(30)/1000.0
+
+                # Actions section
+                if ( turn == 'ai' ):
+                    # AI action if it is it's turn
+                    self.ai.step()  # Notify AI
+                    self.update()
+                    pygame.time.delay(500)
+
                 # Event handling
                 for event in pygame.event.get():
                     # Handles QUIT state
@@ -150,11 +178,18 @@ class Game():
                         if (self.config['enable_plots']): self.ai.plot()
                         running = False  # Change the running state of the game
 
+                    # Keyboard events
+                    if (event.type == pygame.KEYDOWN):
+                        if (event.key == pygame.K_SPACE):
+                            # Pause the game
+                            self.paused = not self.paused
+                            self.ui.img_paused.visible = not self.ui.img_paused.visible
+
                     # Mouse events
                     if (event.type == pygame.MOUSEBUTTONDOWN):
                         if (self.paused == False):
                             # Checks for click in every white pawn in the board
-                            if (self.playmode == 'manual'):
+                            if (self.playmode == 'manual') and (turn == 'player'):
                                 for pawn in self.judge.group:
                                     if (pawn.color == 'white') and (pawn.handle_click(event.pos) == True):
                                         # Clear all outlines
@@ -171,28 +206,9 @@ class Game():
                                         move = out.handle_click(event.pos)
                                         if (move != None):
                                             self.outlines = []  # Clear all outlines
-                                            self.judge.check(move)  # Execute the move
-
-                                            # Sync changes
-                                            self.screen.blit(self.board, (0, 0))
-                                            [self.screen.blit(pawn.image, (pawn.x, pawn.y))
-                                            for pawn in self.judge.group]
-                                            pygame.display.flip()
-
-                                            pygame.time.wait(500)  # Await 0.5 seconds
-                                            self.ai.step(move)  # Notify AI
-
-                                            # Sync changes
-                                            self.screen.blit(self.board, (0, 0))
-                                            [self.screen.blit(pawn.image, (pawn.x, pawn.y))
-                                            for pawn in self.judge.group]
-                                            pygame.display.flip()
-
-                                            pygame.time.wait(500)
-                                            if (self.judge.victory_validator() != None):
-                                                pygame.time.wait(250)
-                                                self.judge.reset()
-                                            break
+                                            self.judge.check(move)  # Execute the move                                            
+                                            self.update()
+                                            pygame.time.delay(500)
 
                     # UI events
                     if (event.type == pygame.USEREVENT):
@@ -202,9 +218,9 @@ class Game():
 
                                 # Playmode
                                 if (self.ui.sldr_playmode.current_value == 0):
-                                    playmode = 'manual'
+                                    self.playmode = 'manual'
                                 elif (self.ui.sldr_playmode.current_value == 1):
-                                    playmode = 'automatic'
+                                    self.playmode = 'automatic'
 
                                 # AI mode
                                 mode = self.ui.lst_ai_modes.get_single_selection()
@@ -213,40 +229,28 @@ class Game():
 
                                 self.judge.reset()
 
-                    # Keyboard events
-                    if (event.type == pygame.KEYDOWN):
-                        if (event.key == pygame.K_SPACE):
-                            # Pause the game
-                            self.paused = not self.paused
-                            self.ui.img_paused.visible = not self.ui.img_paused.visible
-
                     self.ui.manager.process_events(event)
 
                 # Update the UI manager
                 self.ui.manager.update(time_delta)
 
                 # Run the game if mode is set to automatic
-                if (self.playmode == 'automatic') and (self.paused == False):
-                    pygame.time.wait(500)
+                if (self.playmode == 'automatic') and (self.paused == False) and (turn == 'player'):
                     self.autoplay()
+                    self.update()
+                    pygame.time.delay(500)
 
-                # Show the board on screen
-                self.screen.blit(self.board, (0, 0))
+                # UI and outlines update
+                self.update()
 
-                # Blit all pawns to the screen
-                # Python generators are faster than for loops :D
-                [self.screen.blit(pawn.image, (pawn.x, pawn.y)) for pawn in self.judge.group]
-
-                # Blit all outlines on screen
-                if (self.outlines != []):
-                    [out.update() for out in self.outlines]
-                    [self.screen.blit(out.image, out.position) for out in self.outlines]
-
-                # Draw UI elements on the screen
-                self.ui.manager.draw_ui(self.screen)
-
-                # Update the game display
-                pygame.display.flip()
+                # Check if anyone won
+                winner = self.judge.victory_validator()
+                if ( winner in ['black', 'white'] ):
+                    self.ai.update_nodes(winner)
+                    self.update() # Show the result
+                    self.judge.reset()
+                    self.update() # Reset pawn positions
+                
         except:
             print( self.achievements['0x42'] )
 
