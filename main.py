@@ -1,5 +1,6 @@
 import pygame
 import os
+from pygame import time
 import pygame_gui
 from json import dump, load
 from random import choice
@@ -15,15 +16,21 @@ class Game():
         try:
             # Try to load config from file
             self.config = load( open('config.json') )
+            self.achievements = load( open('achievements.json') )
         except:
-            # File doesn't exist, but it should
-            # give achievement
-            self.config = {
-                "enable_plots": False,
-                "anim_mode": "borderless"
-            }
-            dump( self.config, 'config.json' )
-            print("\n\n[ACHIEVEMENT] Problem?\nTry to glitch the game by removing the config file\n\n")
+            # Annoy the user until it puts the file back
+            while True:
+                try:
+                    self.config = load( open('config.json') )
+                    self.achievements = load( open('achievements.json') )
+
+                    # Give achievement
+                    print( self.achievements['0x69'] )
+
+                    break
+                except:
+                    print("PUT IT BACK!")
+                    time.wait(500)
 
         # SETUP SECTION
         pygame.init()  # Initialize pygame
@@ -241,7 +248,7 @@ class Game():
                 # Update the game display
                 pygame.display.flip()
         except:
-            print("\n\n[ACHIEVEMENT] Cesinha Strikes Back\nFind a game breaking bug/glitch\n\n")
+            print( self.achievements['0x42'] )
 
 game = Game()
 game.run()

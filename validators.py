@@ -1,6 +1,8 @@
 import pygame
+from json import load
 from objects import Pawn
 
+achievements = load( open('achievements.json') )
 class Validator:
     """
     Put some proper documentation on me, you punk
@@ -132,7 +134,7 @@ class Validator:
                         rm_index = self.group.index(p)
                         break
                 else:
-                    print("\n\n[ACHIEVEMENT] Schrödinger's Pawn\nCause a pawn to exist and don't exist at the same time\n\n")
+                    print( achievements['0xff'] )
 
                 self.group.pop(rm_index)
                 self.ids[pawn_id].update_id(target)
@@ -164,7 +166,7 @@ class Validator:
         """
         # Display meme achievement
         if (self.black_wins == 10):
-            print("\n\n[ACHIEVEMENT] Thanos vs Iron Man\n'I am... Inevitable'")
+            print( achievements['0x77'] )
 
         # Check if any pawn crossed the board
         for k, v in self.ids.items():
