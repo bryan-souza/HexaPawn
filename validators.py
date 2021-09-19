@@ -1,6 +1,8 @@
 import pygame
+from json import load
 from objects import Pawn
 
+achievements = load( open('achievements.json') )
 class Validator:
     """
     Put some proper documentation on me, you punk
@@ -10,6 +12,7 @@ class Validator:
     def __init__(self, group):
         self.group = group
         self.ids = {}
+        self.stack = [] # Move call stack for the entire game
         self.move_counter = 0
         self.black_wins = 0
         self.white_wins = 0
@@ -132,7 +135,7 @@ class Validator:
                         rm_index = self.group.index(p)
                         break
                 else:
-                    print("[ACHIEVEMENT] You weren't supposed to do that")
+                    print( achievements['0xff'] )
 
                 self.group.pop(rm_index)
                 self.ids[pawn_id].update_id(target)
@@ -142,11 +145,13 @@ class Validator:
             if (silent == False):
                 print(result[1]) # Logs the move result
 
+        # Since a valid movement was made, add it to
+        # the game call stack'
+        if (result[0]):
+            self.stack.append(movecode)
+
         else:
             print("[ERROR] Invalid movecode")
-
-        # Check if anyone won
-        self.victory_validator()
 
     # Checks if any of the sides have won
     # Resets the game if a victory is detected
@@ -162,80 +167,85 @@ class Validator:
             B: Capture all of your pawns
             C: There's no valid movement left
         """
+        # Display meme achievement
+        if (self.black_wins == 10):
+            print( achievements['0x77'] )
+
         # Check if any pawn crossed the board
         for k, v in self.ids.items():
             # Check if any black pawn crossed the board
             if (k in ['a1', 'b1', 'c1'] and v.color == 'black'):
                 self.black_wins += 1
-                self.reset(silent)
-                return None
+                if silent: self.reset(silent)
+                return 'black'
 
             # Check if any white pawn crossed the board
             if (k in ['a3', 'b3', 'c3'] and v.color == 'white'):
                 self.white_wins += 1
-                self.reset(silent)
-                return None
+                if silent: self.reset(silent)
+                return 'white'
 
         # Check if there's only one pawn color present in the board
         colors = [ pawn.color for pawn in self.group ]
         if (colors.count('white') == 0):
             self.black_wins += 1
-            self.reset(silent)
-            return None
+            if silent: self.reset(silent)
+            return 'black'
         
         if (colors.count('black') == 0):
             self.white_wins += 1
-            self.reset(silent)
-            return None
+            if silent: self.reset(silent)
+            return 'white'
 
         # Check if there's any valid movement left
         states = []
         for pawn in self.group:
+            moves = self.get_movelist(pawn)
             # Check for movementation
-            if ( list(self.ids.keys()).count(f'{pawn.id[0]}{int(pawn.id[1]) + (1 if (pawn.color == "white") else - 1)}') > 0 ):
-                # Can't move, False
-                # Check for possible captures
-
-                # Column capture resolver
-                col_dict = {
-                    "a": ["b"],
-                    "b": ["a", "c"],
-                    "c": ["b"]
-                }
-
-                # Counts how many pawns the selected pawn can't capture
-                exception_cntr = 0
-
-                # Checks for pawn objects at the target positions
-                for col in col_dict[ pawn.id[0] ]:
-                    try:
-                        obj = self.ids[f'{col}{int(pawn.id[1]) + (1 if (pawn.color == "white") else - 1)}']
-                        if (obj.color == pawn.color):
-                            exception_cntr += 1
-                    except:
-                        exception_cntr += 1
-
-                # If the exception counter = the length of testable columns
-                # this means that the selected pawn can't capture any pawn
-                if (exception_cntr == len(col_dict[ pawn.id[0] ])):
-                    # Can't capture, False
-                    states.append(False)
-                else:
-                    # Can capture, return True
-                    states.append(True)
-            else:
-                # Can move, so there's a valid movement, True
+            # If any movecode has length 2 (a movement)
+            if ( any([True if len(x) == 2 else False for x in moves]) ):
                 states.append(True)
+            elif ( any([True if len(x) == 4 else False for x in moves]) ):
+                # This pawn can capture another pawn, so there's still a valid move
+                states.append(True)
+            else:
+                # No valid moves for that pawn
+                states.append(False)
 
         # Finally, checks if there's no valid movement left
         if (states.count(True) == 0):
             self.black_wins += 1
-            self.reset(silent)
-            return None
+            if silent: self.reset(silent)
+            return 'black'
 
-    # Checkers for AI
-    def move_check(self, pawn_id):
-        return self.__move(pawn_id)
+    def get_movelist(self, pawn):
+        """
+        Get all possible movements for a pawn
+        at the current game state
 
-    def capture_check(self, pawn_id, target):
-        return self.__capture(pawn_id, target)
+        Returns:
+        moves : list[str]
+            A list of strings containing the movecodes
+            for all possible movements for a pawn
+
+        """
+        # Init
+        moves = []
+        col_dict = {
+            "a": ["b"],
+            "b": ["a", "c"],
+            "c": ["b"]
+        }
+
+        # Check for movements
+        if (self.__move(pawn.id)[0] == True):
+            moves.append(
+                f'{pawn.id[0]}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')
+
+        # Check for captures
+        for col in col_dict[pawn.id[0]]:
+            if (self.__capture(pawn.id, f'{col}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')[0] == True):
+                moves.append(
+                    f'{pawn.id[0]}x{col}{int(pawn.id[1]) + (-1 if (pawn.color == "black") else 1)}')
+
+        return moves

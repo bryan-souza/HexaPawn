@@ -1,0 +1,4 @@
+pygame
+pygame_gui
+graphviz
+PyPDF2
