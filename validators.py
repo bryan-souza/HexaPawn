@@ -2,10 +2,53 @@ import pygame
 from json import load
 from objects import Pawn
 
-achievements = load( open('achievements.json') )
+achievements = load( open('.achievements.json') )
 class Validator:
     """
-    Put some proper documentation on me, you punk
+    Class used to validate movements and victory checking (a judge, basically)
+
+    Parameters
+    ----------
+    group : list[Pawn]
+        A list of Pawn objects that are actually in the game (weren't captured
+        yet)
+
+    Attributes
+    ----------
+    group : list[Pawn]
+        The pawns inside the game
+    ids : dict
+        ID table used to know who's where
+    stack : list[str]
+        The movement call stack of the game
+    move_counter: int
+        Counter to keep track of how many movements
+        were made in the game
+    black_wins : int
+        Counts how many times the black pawns won
+    white_wins: int
+        Counts how many times the white pawns won
+
+    Methods
+    -------
+    reset()
+        Rolls back all attributes to it's original
+        state when the object was created, keeping
+        only move_count, black_wins and white_wins
+        untouched
+    check()
+        Checks if the given movecode can be executed;
+        if valid movecode is given, it'll update
+        the pawns' positions and other game variables
+        regarding movements or captures
+    victory_validator()
+        Checks if the actual game state of the board
+        meets any of the requirements of the game to
+        count as a win; returns the color who won or
+        None if no victory situation was found
+    get_movelist()
+        Returns all possible movements for the given
+        Pawn object, at the current game state
     """
 
     # Constructor
@@ -24,6 +67,16 @@ class Validator:
 
     # Pawn id updater
     def __update_ids(self):
+        """
+        [Private Method]
+        Resets and recreates the IDs table based on the game table
+
+        Returns
+        -------
+        None
+            Since it is just updating a class attribute, theres no
+            need to return information
+        """
         # Reset the id dictionary
         self.ids = {}
 
@@ -33,6 +86,19 @@ class Validator:
 
     # Move tester
     def __move(self, pawn_id):
+        """
+        [Private Method]
+        Checks if the given pawn can move ahead
+
+        Returns
+        -------
+        tuple: (bool, str)
+            Returns a tuple containing a boolean
+            to describe if the movement was made
+            or not, and a string containing a 
+            message to be shown on the python
+            shell
+        """
         # Try to fetch the pawn object
         try:
             # Fetch the pawn object by id
@@ -41,7 +107,7 @@ class Validator:
             # Get the destination square by doing some maths :D
             destination = f'{pawn_id[0]}{int(pawn_id[1]) + (1 if (pawn.color == "white") else -1)}'
         except KeyError:
-            return [None, "[ERROR] Pawn not found"]
+            return (None, "[ERROR] Pawn not found")
 
         # Tests if there's any pawn in the destination square
         test_list = [ True if (test.id == destination) else False for test in self.group ]
@@ -49,7 +115,7 @@ class Validator:
         if ( test_list.count(True) > 0 ):
             # Yep, there's a pawn ahead, so don't move
             # raise a debug message
-            return [False, "[ERROR] Can't move this pawn, there's another pawn at the destination"]
+            return (False, "[ERROR] Can't move this pawn, there's another pawn at the destination")
 
         else:
             # There's no pawn ahead, so it can move
@@ -57,6 +123,20 @@ class Validator:
 
     # Capture tester
     def __capture(self, pawn_id, target):
+        """
+        [Private Method]
+        Checks if the given pawn can capture
+        the given target
+
+        Returns
+        -------
+        tuple: (bool, str)
+            Returns a tuple containing a boolean
+            to describe if the capture was made
+            or not, and a string containing a 
+            message to be shown on the python
+            shell
+        """
         # Try to fetch the required objects
         try:
             # Fetch the pawn object by id
@@ -66,17 +146,29 @@ class Validator:
             tgt = self.ids[target]
 
         except KeyError:
-            return [None, "[ERROR] Pawn not found"]
+            return (None, "[ERROR] Pawn not found")
 
         # Check if the pawns have different colors
         if (pawn.color != tgt.color):
-            return [True, f'[CAPTURE] {pawn_id[0]}x{tgt.id}'] # Can capture
+            return (True, f'[CAPTURE] {pawn_id[0]}x{tgt.id}') # Can capture
 
         else:
-            return [False, "[ERROR] The pawns have the same color"] # Can't capture
+            return (False, "[ERROR] The pawns have the same color") # Can't capture
 
     # Reset the board state
     def reset(self, silent=False):
+        """
+        Resets game variables to it's initial
+        state, except moves_counter, black_wins
+        and white_wins
+
+        Returns
+        -------
+        None
+            Since it is just rolling back some game
+            variables, there's no need to return
+            information
+        """
         # Clear the pawn groups
         self.group = []
 
@@ -109,6 +201,12 @@ class Validator:
         Examples:
         a2 -> Moves a pawn to the a2 position
         axb2 -> Pawn at a1 captures a pawn at b2
+
+        Returns
+        -------
+        None
+            Either the game will update the pawns positions or will print a debug message
+            on the python shell
         """
         if ( len(movecode) == 2 ):
             # Pawn movement
@@ -166,6 +264,17 @@ class Validator:
             A: Cross the board first
             B: Capture all of your pawns
             C: There's no valid movement left
+
+        Returns
+        -------
+        str: 'black'
+            If a black win is detected, return
+            a string containing its color
+        str: 'white'
+            If a white win is detected, return
+            a string containing its color
+        None
+            If neither blacks or whites won
         """
         # Display meme achievement
         if (self.black_wins == 10):
@@ -227,7 +336,6 @@ class Validator:
         moves : list[str]
             A list of strings containing the movecodes
             for all possible movements for a pawn
-
         """
         # Init
         moves = []

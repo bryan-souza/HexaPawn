@@ -5,7 +5,6 @@ HexaPawn
    :maxdepth: 4
 
    ai
-   bus
    main
    objects
    ui

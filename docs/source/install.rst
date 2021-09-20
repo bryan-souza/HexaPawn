@@ -72,6 +72,36 @@ just go to the "Downloads" section and follow along
 with the instructions. They explain how to install
 it in Windows, major linux distros and Mac.
 
+Sphinx
+######
+
+Sphinx is an optional requirement, needed only if you
+want to build the documentation locally. Otherwise you
+can find it online at `our ReadTheDocs page <https://hexapawn.readthedocs.io/en/latest/index.html>`_
+
+To install sphinx, simply run the command:
+
+.. code-block:: console
+
+    pip install -U sphinx
+
+
+.. note:: If you are using Mac/Linux or any other UNIX-like system, you may need to install `Make <https://www.gnu.org/software/make/>`_
+
+
+To build the documentation:
+
+.. code-block:: console
+    
+    sphinx-build -b html docs/source/ docs/build/html
+
+
+If everything goes fine, you'll see a new folder inside the ``docs``
+folder called ``build/html``, where sphinx put the HTML files and other
+resources.
+
+.. seealso:: `Sphinx tutorial <https://www.sphinx-doc.org/en/master/tutorial/index.html>`_ for further information about documentation building process
+
 PIP Requirements
 ################
 
@@ -87,7 +117,7 @@ Linux/Mac:
 
 .. code-block:: console
 
-    pip3 install -r requirements.txt
+    pip install -r requirements.txt
 
 
 Windows:
@@ -105,4 +135,4 @@ Now simply run the ``main.py`` file:
 
     python3 main.py
 
-And yay, it works! (or not, i dunno)
+And yay, it works! (or doesn't, i dunno)
