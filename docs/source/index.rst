@@ -15,7 +15,6 @@ Welcome to HexaPawn's documentation!
    hexapawn
    tree
    learning
-   packing
    modules
 
 Indices and tables

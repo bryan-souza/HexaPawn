@@ -113,7 +113,7 @@ conquer the world.
 Mitosis
 =======
 
-Cell division time! Yay.
+    *Cell division time! Yay.*
 
 Well, not really.
 
@@ -169,4 +169,20 @@ Two-Face (a. k. a. Harvey Dent)
 ===============================
 
 By mixing both methods, our AI will be capable of
-removing the nodes that 
+removing the nodes that result in a loss, while duplicating
+nodes that result in a win. So we are basically decreasing
+the rate of error and increasing our chance of winning
+at the same time, cool isn't it? Just be sure Mr. Dent
+over here gets too cocky and stars flipping coins to decide
+which color wins and which color loses; if that happens:
+call the Bats right away!
+
+Final Thoughts
+==============
+
+I hope you understood what i tried to say about the learning
+process of this AI, and if you want my advice: test it, and
+test it *a lot*. Enable plotting in the `config.json` file
+and see for yourself how the AI's "brain" changes throughout
+the generations! It's a cool experience, even better when you
+understand what is happening and why it's happening.

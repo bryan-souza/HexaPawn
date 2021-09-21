@@ -16,13 +16,13 @@ class Game():
         try:
             # Try to load config from file
             self.config = load( open('config.json') )
-            self.achievements = load( open('achievements.json') )
+            self.achievements = load( open('.achievements.json') )
         except:
             # Annoy the user until it puts the file back
             while True:
                 try:
                     self.config = load( open('config.json') )
-                    self.achievements = load( open('achievements.json') )
+                    self.achievements = load( open('.achievements.json') )
 
                     # Give achievement
                     print( self.achievements['0x69'] )

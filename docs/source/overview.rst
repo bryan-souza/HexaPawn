@@ -17,6 +17,6 @@ and simple as I can while trying to explain you
 how this whole mess of python code works and
 maybe a little background theory.
 
-Made with love by `hellstrike12 <https://github.com/hellstrike12>`_
+Made with love by `bryan-souza <https://github.com/bryan-souza>`_
 and submitted for Digital Ocean's
 Hacktoberfest (2020)
