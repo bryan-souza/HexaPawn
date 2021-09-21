@@ -1,0 +1,235 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Hellstrike12
+# This file is distributed under the same license as the HexaPawn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HexaPawn \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-21 14:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/objects.rst:2 759c85f590a841be96e7fe4ea70b3795
+msgid "objects module"
+msgstr ""
+
+#: 24cdbd65a2254d46b56d9281e46ae1c1 objects:1 of
+msgid "HexaPawn objects module"
+msgstr ""
+
+#: d63b97fb1b9748a4844d6b86cb91babb objects:3 of
+msgid ""
+"A module for storing (and providing) game objects e.g. Pawns, Move "
+"indicators"
+msgstr ""
+
+#: 6553722b644143fea1ec340b99d89bdb 7cd056f725bf4f708dceb87d6f72aa02
+#: objects.Outline:1 objects.Pawn:1 of
+msgid "Bases: :class:`pygame.sprite.Sprite`"
+msgstr ""
+
+#: f7312f0bc2b64f34a94dce7f9e355761 objects.Outline:1 of
+msgid "A object representing a move indicator on the screen"
+msgstr ""
+
+#: 2933c857e753479caf0f0d5b86f48b52 5f43dc53e009423e8f701f3903bff12d
+#: 97d9249033b3451c913385e4c927927d cc7b7bc9d34b49cd979b57e1b0c1c8ec
+#: e374d01db6854e4d9fdf553dfc7da801 objects.Outline
+#: objects.Outline.handle_click objects.Pawn objects.Pawn.handle_click
+#: objects.Pawn.update_id of
+msgid "Parameters"
+msgstr ""
+
+#: d10dc6e98d424da5b520997e315458ea objects.Outline:3 of
+msgid ""
+"The movecode that this outline is representing; Determines the color and "
+"position on screen to the outline"
+msgstr ""
+
+#: f329fd7b14d64370a900eab52b0f88d8 objects.Outline:10 of
+msgid "The movecode that this outline is representing"
+msgstr ""
+
+#: 0e0f92a470a64b0095fb0a96fbc68e06 13455ac34930467caf3bd56c8782e77d
+#: 40e7b4cc9f8446658a1d361c5ccfaf33 453ecdac0f7e4647b27ec09ada0ae568
+#: 65aa322640a54bf389f38d3bc87e9c23 a4699b6fb13a4956b00de12f277f8491
+#: c69ec0d22da34610a2e0d230337aa557 ce0f8f96d08f4cc6ac9aaed2e0df73f0
+#: cf7c8177051b4c4ca6ebbd9fd26cccd5 d679fa1a24ce42b6a2dea12cb423c6b4
+#: e0e624c9851a464f9b8c85ded2c63ea1 objects.Outline objects.Pawn of
+msgid "type"
+msgstr ""
+
+#: 75ee2c02796e429aa5ff08e3689a909b a8317322852a4ae3ba9bb212daa961b8
+#: b9e857481c8d4d039d60be858048c6e8 ea5a505b99014ab8a7151bf48589f1ce
+#: f710e3c54c0b4974bf181eeffebffc03 objects.Outline:12 objects.Outline:18
+#: objects.Outline:24 objects.Pawn:18 objects.Pawn:44 of
+msgid "str"
+msgstr ""
+
+#: 005f413faf474c899b2af10c9952e68b objects.Outline:16 of
+msgid "The square which this outline will be rendered on"
+msgstr ""
+
+#: 7f01f2aa935e4568848d669904f8933f objects.Outline:22 of
+msgid "The type of action this outline is representing"
+msgstr ""
+
+#: e990e73af3ae41dbb63faac12e9615ec objects.Outline:28 of
+msgid "A list of sprite images to generate the animation effect"
+msgstr ""
+
+#: 1fce1abdf05945cc979f32277e7d6b5d objects.Outline:31 of
+msgid "list[Surface]"
+msgstr ""
+
+#: 83e435b468744470b3d44a3d739b410e objects.Outline:35 of
+msgid "The animation frame that is being rendered"
+msgstr ""
+
+#: 1527d7863bbb44c898ab009e4f4140c1 5d32e3ed8cf449deb5674dd6452a7eaf
+#: c46e12d6af4b46d5b652f2a7779806ba objects.Outline:37 objects.Pawn:31
+#: objects.Pawn:37 of
+msgid "int"
+msgstr ""
+
+#: f22be34f00d74c0d86a34c46da058238 objects.Outline:41 of
+msgid "The current animation frame"
+msgstr ""
+
+#: 0168dcc3968945748e9ebd047b009b13 9e5efd59c01c4f3ab1681ea35823ea73
+#: objects.Outline:43 objects.Pawn:25 of
+msgid "Surface"
+msgstr ""
+
+#: 34264ad07fe5498e8632bb5ce3051337 objects.Outline:47 of
+msgid "Updates the current animation frame; makes the animation effect work"
+msgstr ""
+
+#: 2cb23f004232432a9a23a85e940aa0ea objects.Outline:52 of
+msgid ""
+"Checks if the outline was clicked; executes the move bound to this "
+"outline when clicked"
+msgstr ""
+
+#: 6e881fc1a7be4b60ab0eae997863b846 objects.Outline.handle_click:1 of
+msgid ""
+"Checks whenever this outline was clicked; returns the action bound to "
+"this ouline"
+msgstr ""
+
+#: 882722fbafbb45a2bdd54c8667cca372 objects.Outline.handle_click:4 of
+msgid "The actual mouse position"
+msgstr ""
+
+#: c91159cf50d944f4b965000330ead4c7 ddce3254171f4068b1ab7cf360e055b3
+#: f0898195909148da99cd90d2e11daab9 objects.Outline.handle_click
+#: objects.Pawn.handle_click objects.Pawn.update_id of
+msgid "Returns"
+msgstr ""
+
+#: 09bd5d86f91d494c822903f04a1c0599 objects.Outline.handle_click:7 of
+msgid "The movecode bound to this ouline"
+msgstr ""
+
+#: 2decfbafaae5475faf06857a2c727024 5976f8f878254706a90e3e51ec4adec6
+#: d05893527bd94437817801664431f9f9 objects.Outline.handle_click
+#: objects.Pawn.handle_click objects.Pawn.update_id of
+msgid "Return type"
+msgstr ""
+
+#: bbba003be2eb4e2b88b0b1a0aef4cea7 objects.Outline.update:1 of
+msgid "Iterates to the next frame; resets if the counter passes 3"
+msgstr ""
+
+#: 79b0c95a6bd04fd989bb8e6f6b95e93b objects.Pawn:1 of
+msgid "A object representing a chess pawn"
+msgstr ""
+
+#: 0c00986b04514bcda48450bdbe49667a objects.Pawn:3 of
+msgid "Defines which sprite image to use; choose between 'black' or 'white'"
+msgstr ""
+
+#: a9a814a589904ce7b695b526a373a1c8 objects.Pawn:6 of
+msgid "Defines in which square the pawn will be positioned when the game starts"
+msgstr ""
+
+#: e5655e4b77d842538dac40fcb43bdd49 objects.Pawn:10 of
+msgid "Defines whenever the sprite should be rendered or not"
+msgstr ""
+
+#: a09d2a2b386b4bc4bacd1f5aa0a84e51 objects.Pawn:16 of
+msgid "The color of this pawn"
+msgstr ""
+
+#: d44c1562bd5242dfbe21ad14bcb3870d objects.Pawn:22 of
+msgid "The corresponding pawn sprite for this pawn"
+msgstr ""
+
+#: 4e5e248401b44aaeb5052aa22ca3f044 objects.Pawn:29 of
+msgid "The position in the x axis (in pixels) for this pawn"
+msgstr ""
+
+#: 0af45c104c174459b2517f27d3fd7115 objects.Pawn:35 of
+msgid "The position in the y axis (in pixels) for this pawn"
+msgstr ""
+
+#: 4dc4008d76604c7ba8cc43982ec7e4c6 objects.Pawn:41 of
+msgid "The square that this pawn is located (chess convention)"
+msgstr ""
+
+#: 764fd10d780547e798ebc8a613c685c5 objects.Pawn:48 of
+msgid "Changes the pawn square, its id and its position on screen (x, y)"
+msgstr ""
+
+#: de81211bd15f4f8698cc179cef8674a0 objects.Pawn:53 of
+msgid ""
+"Returns a list of strings containing all the moves that this pawn can "
+"make at the current game state"
+msgstr ""
+
+#: 34120e1d88224ddea1e3e8877a1e554d objects.Pawn:59 of
+msgid ""
+"Returns True if the mouse was clicked while above this pawn; returns "
+"False if the mouse wasn't above this pawn"
+msgstr ""
+
+#: c1f2a4d097c3425ca4cc689ef0451ffd objects.Pawn.handle_click:1 of
+msgid "Checks if this pawn was clicked or not"
+msgstr ""
+
+#: 5873af7fcf0148a4bb1015cd790e3ba9 objects.Pawn.handle_click:3 of
+msgid "The mouse coordinates"
+msgstr ""
+
+#: 2c191146b6d341a596b3fe913657775d objects.Pawn.handle_click:6 of
+msgid "True if it was clicked; False if it wasn't"
+msgstr ""
+
+#: 34a8d2787e114f2ba1b36594f4d93b62 objects.Pawn.update_id:1 of
+msgid "Changes the pawn position on screen and its id"
+msgstr ""
+
+#: c2199f5ec2084226aea658620284865d objects.Pawn.update_id:4 of
+msgid "The square coordinates to where to move the pawn"
+msgstr ""
+
+#: 70103c1b7aea4483acf06361e39f863a objects.Pawn.update_id:8 of
+msgid "The action was successfully completed"
+msgstr ""
+
+#: 9c81c5bb4c6247129e84d2bf8d575de0 objects.Pawn.update_id of
+msgid "Raises"
+msgstr ""
+
+#: 865c9a9baaf942fa90fcbdf9e92a8648 objects.Pawn.update_id:11 of
+msgid "The given coordinates couldn't be found     in the move table"
+msgstr ""
+

@@ -1,0 +1,42 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Hellstrike12
+# This file is distributed under the same license as the HexaPawn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HexaPawn \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-21 14:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/overview.rst:3 3855fb205383405988d1604f6c6e71c9
+msgid "Overview"
+msgstr ""
+
+#: ../../source/overview.rst:5 b9fb67e111c34d3f8c475f12823e68e2
+msgid ""
+"This project was created in a try to explain how machines can learn by "
+"\"mimicking\" our learning process: by trying, failing and retrying until"
+" they achieve a modest amount of knowledge to perform some kind of tasks "
+"that lazy humans like you and me don't really want to do, like "
+"calculating all possibilities in a game of hexapawn and playing it until "
+"it gets so good at it that it's new job becomes to frustrate as many "
+"humans as it can. In this documentation, I'll try to be as concise and "
+"simple as I can while trying to explain you how this whole mess of python"
+" code works and maybe a little background theory."
+msgstr ""
+
+#: ../../source/overview.rst:20 dc2c8c717f5c49a88dec06816ff8c953
+msgid ""
+"Made with love by `bryan-souza <https://github.com/bryan-souza>`_ and "
+"submitted for Digital Ocean's Hacktoberfest (2020)"
+msgstr ""
+

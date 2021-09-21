@@ -1,0 +1,340 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Hellstrike12
+# This file is distributed under the same license as the HexaPawn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HexaPawn \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-21 14:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/learning.rst:6 baebd8101cea42069647c6ecd418e2bd
+msgid "Learning to learn"
+msgstr "Aprendendo a aprender"
+
+#: ../../source/learning.rst:8 dcf088d58cb44d09befbfe536ed62e7f
+msgid ""
+"In this section, I'll explain more about how the AI can learn by playing "
+"with you. I've used 3 types of \"learning algorithms\" in this project: "
+"``Inclusive``, ``Exclusive`` and ``Both``. When you open the game, you can change the"
+" default algorithm and see how their graphs differ from each other. If "
+"you're lazy and don't want to lose to my fearsome AI, that's okay (even I"
+" am tired of losing that thing), just stick with me and you'll understand"
+" the magic behind the monster."
+msgstr ""
+"Nessa seção, eu explicarei mais sobre como a IA pode aprender jogando "
+"com você. Eu usei 3 tipos de \"algoritmos de aprendizado\" nesse projeto: "
+"``Inclusivo``, ``Exclusivo`` e ``Ambos``. Quando abrir o jogo, você pode mudar "
+"o algoritmo padrão e ver como os grafos se diferenciam entre si. Se você estiver "
+"com preguiça e não quer perder para minha temível IA, tranquilo (até mesmo eu "
+"estou cansado de perder para aquela coisa), apenas continue lendo e você vai "
+"entender a magia por detrás do monstro."
+
+#: ../../source/learning.rst:21 e48f32ccab01497cac71a11822b56bbb
+msgid "How do humans learn?"
+msgstr "Como os humanos aprendem?"
+
+#: ../../source/learning.rst:23 97f1e8ac451547dc96b149b8f25c8b4c
+msgid ""
+"Remember when you was a kid and you wanted so much that bar of chocolate,"
+" but your mom said: \"NO!\"? At that moment, you learned that sometimes, "
+"you can't have everything you want whenever you want. That's one way we "
+"lovely humans can learn, but there are another ways (just two, to be "
+"honest) that are more interesting if you think like a programmer."
+msgstr ""
+"Lembra quando você era uma criança e você queria muito aquela barra de "
+"chocolate, mas sua mãe disse: \"Não!\"? Naquele momento, você aprendeu "
+"que às vezes não se pode ter tudo quando queremos. Essa é uma maneira "
+"que nós amáveis humanos, na qual podemos aprender, mas existem outras "
+"maneiras (apenas duas pra ser honesto) que são mais interessantes se "
+"você pensar como um programador."
+
+#: ../../source/learning.rst:32 4361b524f7df41bf8a9f84874c37c6b4
+msgid ""
+"The first one is the learning by reward. This kind of happens every year "
+"when an entity called \"Santa Claus\" rewards children based on their "
+"behaviour along the year. If you were a good boy/girl, you were rewarded "
+"with a new bicycle, a brand new `Nintendo 64 "
+"<https://www.youtube.com/watch?v=pFlcqWQVVuU>`_ (pun intended), or "
+"anything like that. After opening the presents under the christmas tree, "
+"you learn that being a nice person can be rewarding, so you'll look "
+"forward being a nice person every year."
+msgstr ""
+"O primeiro método é o aprendizado pela recompensa. Esse tipo acontece "
+"todos os anos quando uma entidade chamada \"Papai Noel\" presenteia as "
+"crianças baseado no seu comportamento ao longo do ano. Se você foi um(a) "
+"bom(a) garoto(a), você será recompensado com uma bicicleta nova, um `Nin`"
+"tendo 64 "<https://www.youtube.com/watch?v=pFlcqWQVVuU>`_ novinho "
+"(era pra ser engraçado, ok?), ou algo do tipo. Depois de abrir os "
+"presentes debaixo da árvore de natal, você aprende que ser uma boa pessoa "
+"pode ser recompensador, então você vai buscar ser uma pessoa boa todos os "
+"anos."
+
+#: ../../source/learning.rst:43 7e2e0c4867664beb9f924cb378828eb8
+msgid ""
+"Keeping up with the christmas example (and spirit :D), the other way of "
+"learning is based on punishment. Remember when I said that only the good "
+"boys/girls won cool presents? That's right, the bad boys/girls don't get "
+"anything, but their friends do. And when they go outside to play and see "
+"the cool things their neighbors got by just being nice, they may be "
+"tempted to change their behaviour the next year and get some presents too"
+" (or they may get mad at Mr. Santa Claus, start growing green hair and "
+"change their names to *Grinch*)."
+msgstr ""
+"Continuando com o exemplo de natal (e espírito também :D), a outra maneira "
+"de se aprender é baseado na punição. Lembra quando eu disse que somente as "
+"crianças boas ganhavam presentes legais? Pois é, as crianças más não ganhavam "
+"nada, mas seus amigos sim. E quando eles iam brincar lá fora e viam as coisas "
+"legais que seus vizinhos tinham ganhado só por terem sido pessoas boas, eles "
+"podem ficar tentados a mudar seu comportamento no próximo ano e ganhar algum "
+"presente também (ou eles podem ficar com ódio do Sr. Papai Noel, começarem a "
+"criar pelos verdes pelo corpo e mudarem seus nomes para *Grinch*)."
+
+#: ../../source/learning.rst:56 94c91441d410438fb2950f781256906b
+msgid "Meet Mr. Hippocampus"
+msgstr "Conheça o Sr. Hipocampo"
+
+#: ../../source/learning.rst:58 f36187a37a9d4f87be6e6edda7d8758e
+msgid ""
+"Well, now that you know about how the human learning process works, you "
+"shall teach your computer how to learn too."
+msgstr ""
+"Bom, agora que você sabe como funciona o processo de aprendizado humano, "
+"você deve ensinar seu computador como aprender também."
+
+#: ../../source/learning.rst:62 11dd9b89a04e477aa3ba661f012993d2
+msgid ""
+"To start simple, we'll pick the game of hexapawn as a learning base. The "
+"main reason for this is that hexapawn's moves are pretty simple to "
+"predict, and by knowing every single way that the game may end, helps "
+"like, a lot, because you can see if your AI is truly learning how to play"
+" or not."
+msgstr ""
+"Para começar com algo simples, nós usaremos o jogo hexapawn como uma base "
+"de aprendizado. O principal motivo para tal é que os movimentos do hexapawn "
+"são bem fáceis de prever, e sabendo todas as formas na qual o jogo pode acabar, "
+"ajuda muito, porque assim você pode ver se sua IA está aprendendo como jogar "
+"ou não."
+
+#: ../../source/learning.rst:69 2e6c242580f24e26a937caef6130bd45
+msgid "So, let's start by calculating all game moves:"
+msgstr "Então, vamos começar calculando todos os movimentos possíveis:"
+
+#: ../../source/learning.rst:76 2745e987548a4528bf0492beaab639e7
+msgid ""
+"That's a lot of code right? But don't worry, it's actually pretty simple "
+"to understand."
+msgstr "É bastante código né? Mas não se preocupe, é bem simples de entender"
+
+#: ../../source/learning.rst:79 fe03f62ab1db4610b78a65d52f77ad56
+msgid ""
+"When started, the function will simulate the game state based on the "
+"given movecode using the ``self.judge`` object within the Ai class. The "
+"judge will execute the given movecode and then, the algorithm will check "
+"all possible capture movements for the opposing color (if the last move "
+"was a white pawn move, it'll check for all possible moves for the black "
+"pawns, and so on), generating a list of strings (movecodes). Then, the "
+"algorithm will run the ``__make_nodes()`` function again, carrying the "
+"given movecode plus one member of the children list (the list of possible"
+" moves) and do all this process again and again, until it reaches a leaf "
+"(a game state where someone win). In this case, it'll return a Node "
+"object containing no children at all, which causes the application call "
+"stack (its PROGRAM CALL STACK, not MOVE CALL STACK. They're very "
+"different things) to go back one level (the process is kept open until "
+"all possible trees have been solved, i.e. reached a leaf) and solve the "
+"next children (sorry, I can't explain how a function that keeps calling "
+"itself until some condition is met properly)."
+msgstr ""
+"Quando executada, a função vai simular o estado do jogo baseado "
+"no movecode que foi passado como parâmetro usando o objeto ``self.judge`` "
+"contido dentro da classe ``Ai``. O juiz irá executar o movecode e aí, "
+"o algoritmo vai calcular todos os movimentos possíveis da cor oposta (se "
+"o último movimento foi das brancas, o algoritmo vai checar calcular todos "
+"os movimentos das pretas, e assim por diante), gerando uma lista de strings "
+"(movecodes). Depois, o algoritmo vai executar a função ``__make_nodes()`` "
+"novamente, levando como parâmetros o movecode dado somado a um membro da "
+"lista de filhos (a lista de moviemntos possíveis) e repetir esse processo "
+"denovo e denovo, até que ele chegue em um vértice folha (um estado de jogo "
+"em que alguém ganha). Nese caso, ele vai retornar um objeto Node contendo "
+"nenhum filho, o que causa a pilha de chamadas da aplicação (favor não "
+"confundir com a pilha de chamada de movimentos. Eles são coisas totalmente "
+"diferentes) voltar um nível abaixo (o processo é mantido rodando até que "
+"todas as árvores de movimento possíveis tenham sido resolvidas, ou seja, "
+"chegado a um vértice folha) e só então resolve o próximo filho (desculpe, "
+"eu não consigo explicar adequadamente como uma função que invoca a si mesma "
+"até que uma condição seja satisfeita)."
+
+#: ../../source/learning.rst:102 ca2b11ab826d46caaf6601fa0689904c
+msgid ""
+"When all trees. subtrees, nodes and leaves are found, tested and "
+"computed, you get that crazy image that you saw in the last chapter."
+msgstr ""
+"Quando todas as árvores, subárvores, vértices e folhas forem encontradas, "
+"testadas e computadas, você vai obter aquela imagem louca que viu no "
+"capítulo anterior."
+
+#: ../../source/learning.rst:106 c27232e51362459abd845bedf6a461a0
+msgid ""
+"If you understood what I tried to say above, congratulations, you teached"
+" your computer how to remember things and gave it some kind of \"brain\"."
+" The only sad part is that it'll \"think\" randomly and will never become"
+" self sentient and conquer the world."
+msgstr ""
+"Se você entendeu o que eu tentei dizer acima, meus parabéns, você ensinou "
+"seu computador como lembrar coisas e o deu um tipo de \"cérebro\". A parte "
+"triste disso tudo é que ele irá \"pensar\" aleatóriamente e nunca vai se "
+"tornar autoconsciente e dominar o mundo."
+
+#: ../../source/learning.rst:114 fb4df4fd66824214987a74c2df05714f
+msgid "Mitosis"
+msgstr "Mitose"
+
+#: ../../source/learning.rst:116 219a5e428d5f4cf095491b1cb3809c2f
+msgid "*Cell division time! Yay.*"
+msgstr "*Hora da divisão celular! Aeee.*"
+
+#: ../../source/learning.rst:118 a99e782dd43341709032bbfebbcc4df3
+msgid "Well, not really."
+msgstr "Não é bem por aí."
+
+#: ../../source/learning.rst:120 a0e5609841584568adba90696378cca6
+msgid ""
+"Remember when I mentioned an \"Inclusive\" learning method? It's very "
+"similar to cell division and duplication (a. k. a. Mitosis)."
+msgstr ""
+"Lembra quando eu mencionei um método de aprendizado \"inclusivo\"? É "
+"bem similar ao processo de divisão e duplicação celular (mitose)."
+
+#: ../../source/learning.rst:124 a6911e24a818420599452ebf4ffb4db6
+msgid ""
+"Imagine that the \"brain\" that we gave to our little frankenstein is "
+"made of genuine biological cells. Now imagine that everytime a cell is "
+"identified as \"good\", the brain forces it to make mitosis and create "
+"clones of that cell, so your brain will incompusively use them more often"
+" and making the chance of them being chosen greater. (just imagine, "
+"because that's not what really happens under the hood when you learn "
+"something)."
+msgstr ""
+"Imagine que o \"cérebro\" que demos ao nosso pequeno frankenstein é feito "
+"de células biológicas genuínas. Agora imagine que toda vez que uma célula "
+"for identificada como \"boa\", o cérebro força ela a fazer mitose e criar "
+"um clone daquela célula, para que o cérebro incompulsivamente use elas com "
+"maior frequência e faça com que a chance delas serem escolhidas seja maior "
+"(apenas imagine, porque não é bem isso que acontece com seu cérebro quando "
+"você aprende algo novo)."
+
+#: ../../source/learning.rst:134 8759d61572d44a009e5d0a13004e8ad4
+msgid ""
+"Well, yes, this is in fact a way of learning, but there's one big problem"
+" with it: the chances of choosing a \"bad\" node is minimal, but never "
+"zero, because the bad nodes are kept inside the brain, and it may be "
+"randomly picked by the AI. So this may work, but it's not the best option"
+" if you want a 100% accurate AI to play with."
+msgstr ""
+"Bem, sim, esse é de fato um meio de aprender, mas há um grande problema "
+"com ele: as chances de escolher uma célula \"ruim\" se torna mínima, mas "
+"nunca se torna zero, porque os vértices ruins são mantidos no cérebro, e "
+"podem ser escolhidos ao acaso pela IA. Então, a IA pode até funcionar desse "
+"jeito, mas não é a melhor opção se você deseja criar uma IA com 100% de "
+"precisão para jogar contra."
+
+#: ../../source/learning.rst:142 94bf8088c40e4aafb515f70387be1ff6
+msgid "So let's meet Mrs. Lobotomy"
+msgstr "Então vamos conhecer a Sra. Lobotomia"
+
+#: ../../source/learning.rst:145 79b99fe619794584bb302c2e5be95c24
+msgid "Lobotomy"
+msgstr "Lobotomia"
+
+#: ../../source/learning.rst:147 60c19cb68c6e484a8735c08ace24b0e9
+msgid ""
+"For those who don't know, lobotomy is a neurological surgery which gets "
+"your hippocampus (long-term memory) removed from your brain. The analogy "
+"works here too. Remember the \"Exclusive\" method? That's right, cutting "
+"time!"
+msgstr ""
+"Para aqueles que não sabem, lobotomia é um procedimento cirúrgico neurológico "
+"no qual é feita a remoção do seu hipocampo (sua memória de longo prazo) "
+"do seu cérebro. A analogia funciona aqui também. Lembra do método \"exclusivo\"? "
+"Isso mesmo, hora de cortar!"
+
+#: ../../source/learning.rst:153 21d355d529f04604b3df117f1bd1f653
+msgid ""
+"This method will remove every single cell that is identified as \"bad\" "
+"from the brain, preventing it to make errors. So every time a losing node"
+" is identified, it'll be removed from the \"brain\" and will no longer be"
+" possible to be made by the Ai."
+msgstr ""
+"Esse método irá remover toda e qualquer célula que for identificada como "
+"\"ruim\" do cérebro, prevenindo-o de cometer erros. Então toda vez que "
+"um vértice que resulta em uma derrota das pretas for encontrado, ele "
+"será removido do \"cérebro\" e a IA não poderá mais executar aquele movimento "
+"novamente quando aquele estado de jogo for alcançado."
+
+#: ../../source/learning.rst:159 09a2fa11083841a3bf944577b1bd2225
+msgid "Sounds a lot better than mitosis, right?"
+msgstr "Soa bem melhor que a mitose, certo?"
+
+#: ../../source/learning.rst:161 db847302d7214eb6b25e068bc867644d
+msgid ""
+"Well, it is and it isn't. Sure, it prevents the Ai to repeat the same "
+"errors every time, but takes a lot of time to test and find every single "
+"game possibility, thus creating the perfect hexapawn Ai."
+msgstr ""
+"Bom, ele é e não é. Certo, ele previne a IA de cometer os mesmos erros "
+"toda vez, mas requer muito tempo para testar todas as possibilidades, "
+"criando a IA de hexapawn perfeita.
+
+#: ../../source/learning.rst:166 d49674d02ec84d54afdaa64415d0f6b1
+msgid "But what if we mix and match both methods?"
+msgstr "Mas e se pudéssemos combinar os dois métodos?"
+
+#: ../../source/learning.rst:169 04761ec6a585472dad744d0afa44c405
+msgid "Two-Face (a. k. a. Harvey Dent)"
+msgstr "Duas Caras (também conhecido como Harvey Dent)"
+
+#: ../../source/learning.rst:171 6d7eb173936b478ab39afe7dc5a1202b
+msgid ""
+"By mixing both methods, our AI will be capable of removing the nodes that"
+" result in a loss, while duplicating nodes that result in a win. So we "
+"are basically decreasing the rate of error and increasing our chance of "
+"winning at the same time, cool isn't it? Just be sure Mr. Dent over here "
+"gets too cocky and stars flipping coins to decide which color wins and "
+"which color loses; if that happens: call the Bats right away!"
+msgstr ""
+"Combinando os dois métodos, nossa IA será capaz de remover vértices que "
+"resultam em derrota, enquanto duplica os vértices que resultam em vitória."
+" Então nós estamos basicamente diminuindo a taxa de erro e aumentando a "
+"chance de acerto ao mesmo tempo, legal né? Só se certifique de que o Sr. "
+"Dent aqui não fique muito excitado e comece a jogar \"cara ou coroa\" para "
+"decidir qual cor ganha e qual cor perde; se isso acontecer, chame o morcegão "
+"na hora!"
+
+#: ../../source/learning.rst:181 f37c937d9e2242948772dd191226d2f9
+msgid "Final Thoughts"
+msgstr "Conclusão"
+
+#: ../../source/learning.rst:183 8a223d639f60404985136c0dc5ee224c
+msgid ""
+"I hope you understood what i tried to say about the learning process of "
+"this AI, and if you want my advice: test it, and test it *a lot*. Enable "
+"plotting in the `config.json` file and see for yourself how the AI's "
+"\"brain\" changes throughout the generations! It's a cool experience, "
+"even better when you understand what is happening and why it's happening."
+msgstr ""
+"Eu espero que você tenha entendido o que tentei explicar sobre o processo "
+"de aprendizagem dessa IA, e se quer um conselho: teste, e teste *muito*. "
+"Habilite as funções gráficas no arquivo `config.json` e veja por conta própria "
+"como o \"cérebro\" da IA se modifica ao longo das gerações! É uma experiência "
+"legal, melhor ainda quando você entende o que está acontecendo e porque está "
+"acontecendo."
+

@@ -1,0 +1,234 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Hellstrike12
+# This file is distributed under the same license as the HexaPawn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HexaPawn \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-21 14:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/install.rst:3 d350f30e127a4edebb0d2a23ea66fc60
+msgid "Installing"
+msgstr "Instalação"
+
+#: ../../source/install.rst:5 4643a46be5f846398872c2c12ca5ac10
+msgid ""
+"You may need to install some things to test and see by yourself how the "
+"AI gets smarter and smarter over time."
+msgstr ""
+"Você vai precisar instalar algumas coisas para testar e ver por conta "
+"própria como a IA fica mais e mais esperta com o tempo."
+
+#: ../../source/install.rst:10 68c0cdacddd2495fb0da9763c14adcd9
+msgid "Python 3"
+msgstr "Python 3"
+
+#: ../../source/install.rst:12 5af9fee8363f4c5584e86e6d5f13092e
+msgid ""
+"As long as we don't have the binaries to share with you, you'll need to "
+"install python 3.6+ in your computer, but don't worry, it's not a "
+"complicated thing."
+msgstr ""
+"Enquanto não tivermos pacotes binários para compartilhar contigo, você "
+"precisará instalar o python 3.6+ em seu computador, mas não se preocupe "
+"não é uma coisa complicada."
+
+#: ../../source/install.rst:17 1ac5e83a701e4da4904980fa9a2636b7
+msgid ""
+"Go to the `python <https://www.python.org>`_ and head to the "
+"\"Downloads\" section. Then, select your OS in the list and it'll "
+"redirect you to a list of python releases. Download the latest 3.x "
+"version and follow the setup installing instructions to get python "
+"working on your machine."
+msgstr ""
+"Vá até o `website do python <https://www.python.org>`_ e encontre "
+"a seção \"Downloads\". Encontre e selecione seu sistema operacional "
+"na lista e você será redirecionado para uma página com uma lista "
+"de versões do python disponíveis para download. Baixe a última "
+"versão 3.x do python e siga as instruções de instalação."
+
+#: ../../source/install.rst:24 d46654d231944f64a1188e8997d0b49f
+msgid ""
+"If you are using Windows, don't forget to check the \"Add to PATH\" "
+"option while installing, because if you forget to check it, you won't be "
+"able to run python console, pip, or any python file in CMD"
+msgstr ""
+"Se você estiver usando Windows, não se esqueça de marcar a opção \"Add to PATH\" "
+"ou \"Adicionar ao PATH\" quando for instalar, porque se você se esquecer disso, "
+"você não conseguirá executar o console python, pip, ou qualquer arquivo python "
+"pelo CMD ou PowerShell"
+
+#: ../../source/install.rst:26 e18c62d775f54ae2a8d6d3abb2dc3df4
+msgid "But I can hear someone say:"
+msgstr "Eu consigo ouvir alguém dizer:"
+
+#: ../../source/install.rst:28 6f4331ca9b4a4b13b6a31609b24a9031
+msgid "*I can't find Linux in the Downloads section*"
+msgstr "*Eu não consigo encontrar Linux na seção de Downloads*"
+
+#: ../../source/install.rst:30 3cf9e07ec20345c7ab7df3b20cf23834
+msgid ""
+"No need to worry, you'll need to take a different path (a shortcut, if "
+"you allow me to say) in order to install python. Here's some examples "
+"based on some major linux distros:"
+msgstr ""
+"Não se preocupe, você só terá de tomar um caminho diferente (um atalho, "
+"se me permite dizer) para instalar o python. Aqui estão alguns exemplos "
+"de como instalar o python nas distribuições Linux mais usadas:"
+
+#: ../../source/install.rst:35 900a37bb11bc4bc49e040261f1b54869
+msgid "Ubuntu/Debian:"
+msgstr "Ubuntu/Debian:"
+
+#: ../../source/install.rst:41 87cf2a57bbed4e0da27d3b1a84a03fdc
+msgid "Fedora/Red Hat:"
+msgstr "Fedora/Red Hat:"
+
+#: ../../source/install.rst:47 697b91bccf2e4738b5fdca65cb32b6b6
+msgid "Arch/Manjaro:"
+msgstr "Arch/Manjaro:"
+
+#: ../../source/install.rst:53 c2852fb60b1543d982c82c8fa46a5477
+msgid ""
+"To check if python is installed, just open the CMD (Windows) or the "
+"console (Linux/Mac) and type"
+msgstr ""
+"Para conferir se o python foi instalado, abra o CMD (Windows) ou o "
+"console (Linux/Mac) e digite:"
+
+#: ../../source/install.rst:60 8d22ed488d7d4bdcb214a84efc5c08f9
+msgid ""
+"You should get a message like \"Python 3.x.x\" indicating the python "
+"version you installed"
+msgstr ""
+"Você deverá receber uma mensagem como \"Python 3.x.x\" indicando a "
+"versão que você acabou de instalar"
+
+#: ../../source/install.rst:64 9e931e517e5c41ecb7c7a123438a18b1
+msgid "Graphviz"
+msgstr "Graphviz"
+
+#: ../../source/install.rst:66 a67c01fdc4354232a2b689d8ba2a1139
+msgid ""
+"Graphviz is a graph visualization software that we've used to plot all AI"
+" generations and it's progress changing over time."
+msgstr ""
+"O Graphviz é um software para a criação e visualização de grafos que usamos "
+"para criar uma visualização gráfica de todas as gerações da IA e como ela "
+"vai se modificando ao longo do tempo."
+
+#: ../../source/install.rst:70 23e457b18ea149dd93ee77e1f0f7a7ed
+msgid ""
+"You can download it `here <https://www.graphviz.org/>`_ just go to the "
+"\"Downloads\" section and follow along with the instructions. They "
+"explain how to install it in Windows, major linux distros and Mac."
+msgstr ""
+"Você pode baixá-lo `aqui <https://www.graphviz.org/>`_ na seção de "
+"\"Downloads\". Apenas siga as instruções no próprio website, onde é "
+"explicado como instalá-lo no Windows, distribuições Linux e Mac."
+
+#: ../../source/install.rst:76 1ea2087f2cde4791b52db8dde71117a3
+msgid "Sphinx"
+msgstr "Sphinx"
+
+#: ../../source/install.rst:78 b51415409156433bbae178cb8689d4f2
+msgid ""
+"Sphinx is an optional requirement, needed only if you want to build the "
+"documentation locally. Otherwise you can find it online at `our "
+"Read The Docs page <https://hexapawn.readthedocs.io/en/stable/index.html>`_"
+msgstr ""
+"Sphinx é um requisito opcional, somente necessário se você quiser construir "
+"a documentação localmente. De todo modo, é possível encontrar a documentação "
+"online na `nossa página do Read the Docs <https://hexapawn.readthedocs.io/en/stable/index.html>`_`
+
+#: ../../source/install.rst:82 300fe54c6f8b45b58565beec93a374db
+msgid "To install sphinx, simply run the command:"
+msgstr "Para instalar o Sphinx, execute o comando:"
+
+#: ../../source/install.rst:89 d5406fdd0635434b9bb1a5c93a1d69f0
+msgid ""
+"If you are using Mac/Linux or any other UNIX-like system, you may need to"
+" install `Make <https://www.gnu.org/software/make/>`_"
+msgstr ""
+"Se você estiver usando Mac ou Linux ou qualquer outro sistema baseado em "
+"UNIX, você precisará instalar o pacote `Make <https://www.gnu.org/software/make/>`_"
+
+#: ../../source/install.rst:92 42cd8c819d27450daf41e39180ac86f8
+msgid "To build the documentation:"
+msgstr "Para construir a documentação:"
+
+#: ../../source/install.rst:99 6d6e19e2868d4aa1ad0222362f8fafba
+msgid ""
+"If everything goes fine, you'll see a new folder inside the ``docs`` "
+"folder called ``build/html``, where sphinx put the HTML files and other "
+"resources."
+msgstr ""
+"Se tudo correr bem, você verá uma nova pasta dentro da pasta ``docs`` "
+"chamada ``build/html``, que é onde o Sphinx coloca os arquivos HTML e "
+"demais recursos da documentação."
+
+#: ../../source/install.rst:103 61657ea00a204e2c9a1756ea86d549d7
+msgid ""
+"`Sphinx tutorial <https://www.sphinx-"
+"doc.org/en/master/tutorial/index.html>`_ for further information about "
+"documentation building process"
+msgstr ""
+"Tutorial do Sphinx <https://www.sphinx-"
+"doc.org/en/master/tutorial/index.html>`_ para mais infomações sobre "
+"o processo de construção da documentação"
+
+#: ../../source/install.rst:106 4440c43ba3ad4e23aeae3815531f2017
+msgid "PIP Requirements"
+msgstr "Requisitos do PIP"
+
+#: ../../source/install.rst:108 5bf9db1999b34318b765b8cda2202126
+msgid ""
+"Now that you have all third-party software up and running in your "
+"computer, you'll have to install python package dependencies. "
+"Fortunately, we've made a PIP package listing for you."
+msgstr ""
+"Agora que você já possui todos os softwares de terceiros rodando "
+"em seu computador, você deverá instalar as dependencies do python."
+"Felizmente, nós fizemos uma lista de dependencies do PIP para você."
+
+#: ../../source/install.rst:113 4c0d87413da340a3b5fe58d613f98842
+msgid ""
+"Just open the terminal/CMD, go to the folder where you extracted/cloned "
+"the git repo and type:"
+msgstr ""
+"Abra o terminal ou CMD, vá até a pasta onde você extraiu ou clonou o "
+"repositório git e digite:
+
+#: ../../source/install.rst:116 808dc375a4a04c38a67d6c34b3009a04
+msgid "Linux/Mac:"
+msgstr "Linux/Mac:"
+
+#: ../../source/install.rst:123 afc132920e41415a9e2f6d941dfe7be2
+msgid "Windows:"
+msgstr "Windows:"
+
+#: ../../source/install.rst:129 02220ca358a94960be936ca69516c7e1
+msgid ""
+"You should see the PIP fetching the packages and automatically installing"
+" it for you."
+msgstr ""
+"Você deverá ver o PIP baixando e instalando os pacotes automaticamente."
+
+#: ../../source/install.rst:132 276391d5a50b468abb2926a3f1e090db
+msgid "Now simply run the ``main.py`` file:"
+msgstr "Agora execute o arquivo ``main.py``:"
+
+#: ../../source/install.rst:138 40c3431068c84d389e4a988b588922c2
+msgid "And yay, it works! (or doesn't, i dunno)"
+msgstr "E funciona! (ou não, não sei)"
+
