@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Hellstrike12
+# This file is distributed under the same license as the HexaPawn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HexaPawn \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-21 14:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/index.rst:9 a4de089a1bed42e2a95b3cf396ac4f15
+msgid "Contents:"
+msgstr ""
+
+#: ../../source/index.rst:7 8fbe377375bc42e0b770bf3e4f19521f
+msgid "Welcome to HexaPawn's documentation!"
+msgstr ""
+
+#: ../../source/index.rst:21 29e33583d2c74cddaccbed787a05e2de
+msgid "Indices and tables"
+msgstr ""
+
+#: ../../source/index.rst:23 7f800947a49645a4b1077128c6330226
+msgid ":ref:`genindex`"
+msgstr ""
+
+#: ../../source/index.rst:24 30d12994df5f455c9c46a8f25e0b33ea
+msgid ":ref:`modindex`"
+msgstr ""
+
+#: ../../source/index.rst:25 a86e0557a6204a97a42ae8c46b5118a3
+msgid ":ref:`search`"
+msgstr ""
+

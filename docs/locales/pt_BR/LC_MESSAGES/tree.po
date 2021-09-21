@@ -1,0 +1,147 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Hellstrike12
+# This file is distributed under the same license as the HexaPawn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HexaPawn \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-21 14:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/tree.rst:3 193c8d660062464587b642d5b16c46c2
+msgid "Nodes, Leaves and Trees"
+msgstr "Vértices, Folhas e Árvores"
+
+#: ../../source/tree.rst:6 05900944da0e48dabe60ea2d2be0aa4c
+msgid "Trees"
+msgstr "Árvores"
+
+#: ../../source/tree.rst:8 fc87a273a5ca4c878eae08b83a019a80
+msgid ""
+"The first core concept you'll need to understand is how Trees work. And "
+"no, I'm not talking about organic trees, I'm talking about coded trees. "
+"If you run the game, play for a little while, then check the ``plots`` "
+"folder, you'll see something like this:"
+msgstr ""
+"O primeiro conceito-chave que você terá de entender é como árvores funcionam. "
+"E não, não estou falando sobre árvores orgânicas, estou falando sobre "
+"árvores programadas. Se você executar o jogo, jogar um pouco e depois der "
+"uma olhada na pasta ``plots``, você verá algo parecido com isso:"
+
+#: ../../source/tree.rst:19 1e5e2877df654d62803dfc5489f2966f
+msgid "Then you may be thinking: *\"WTF is this??\"*"
+msgstr "Você deve estar pensando: *\"O que diabos é isso??\"*"
+
+#: ../../source/tree.rst:21 28a9d989c0594f80aa7d431219b52b79
+msgid ""
+"This, although it may not seem, it is a coded tree (well, not really, "
+"this is in fact a graphical representation of a coded tree). This tree "
+"represents all game movements and its respective children (the moves that"
+" can be made at the given move state). TL;DR: A tree is a collection of "
+"nodes, which indicates the last move and the color that made it, and "
+"which moves can be made after that."
+msgstr ""
+"Isso, apesar de não parecer, é uma árvore programada (bem, não exatamente, "
+"isso é na verdade uma representação gráfica de uma árvore programada). "
+"Essa árvore representa todos os movimentos possíveis em um jogo de "
+"hexapawn e todos os seus filhos (os movimentos que podem ser feitos "
+"quando o jogo se encontra nesse estado). Resumindo: uma árvore é uma "
+"coleção de vértices, que indicam o último movimento realizado e a cor "
+"do peão que o fez, e quais movimentos podem ser feitos depois disso."
+
+#: ../../source/tree.rst:34 cd3aaaa939d543ea8912181781249eac
+msgid "Nodes & Leaves"
+msgstr "Vértices & Folhas"
+
+#: ../../source/tree.rst:36 4145a6742dd84e22ae14ce99c4709e74
+msgid ""
+"Nodes are basically variables that store the last move and all movements "
+"that can be made at the given game state. If you check the code, you'll "
+"see at the ``ai.py`` module, this code piece:"
+msgstr ""
+"Vértices são basicamente variáveis que armazenam o último movimento e "
+"todos os movimentos que podem ser feitos no dado estado de jogo. Se "
+"você der uma olhada no código, você verá no módulo ``ai.py``, esse "
+"pedaço de código:"
+
+#: ../../source/tree.rst:47 1ce938d902dc4b2d86f419d607d21a20
+msgid ""
+"This code creates instances of Node objects that store the infos we've "
+"already covered."
+msgstr ""
+"Esse código cria instâncias de objetos Node que armazenam as informações "
+"que já comentamos sobre."
+
+#: ../../source/tree.rst:50 b26327d23eff41178fd9a0cd683f3959
+msgid "*So what?*"
+msgstr "*Tá. Mas e daí?*"
+
+#: ../../source/tree.rst:52 3b28d8c3621b4c81b6bc9f6c55946955
+msgid ""
+"Nodes are Node objects that have anything different than an empty list "
+"([]) as its ``children`` parameter. When it's not an empty list, it "
+"should be filled with pre calculated move possibilites, represented by "
+"their respective movecodes."
+msgstr ""
+"Vértices são objetos Node que possuem qualquer coisa diferente de uma "
+"lista vazia ([]) como parâmetro ``children`` (filhos). Quando o parâmetro "
+"não é vazio, ele deve ser uma lista de movimentos possíveis pré-calculados, "
+"representados pelos seus respectivos códigos (movecodes)"
+
+#: ../../source/tree.rst:59 cb463408f3444d209dd1c305c637be10
+msgid ""
+"When the children parameter equals to an empty list, this means that this"
+" node is an end node, a. k. a. Leaf. What this really means is that, "
+"after this node, no move can be made anymore, because one of the sides "
+"has won, causing a game reset."
+msgstr ""
+"Quando o parâmetro ``children`` está vazio, isso significa que esse "
+"vértice é um vértice final, também conhecido como Folha. O que isso "
+"realmente significa é que, após esse vértice, nenhum outro movimento "
+"pode ser realizado, porque um dos lados ganhou, causando um reset."
+
+#: ../../source/tree.rst:66 f5fa8d2f56a648778d41c6ad309c8e6c
+msgid ""
+"But these concepts are completely relative to the move call stack, "
+"because a node can turn into a leaf, and a leaf can turn into a node, "
+"depending on how the game evolves. Consider this:"
+msgstr ""
+"Mas esses conceitos são totalmente relativos á pilha de chamadas de "
+"movimento, porque um vértice pode se tornar uma folha, e uma folha se "
+"tornar um vértice, dependendo de como o jogo evolui. Considere isso:"
+
+#: ../../source/tree.rst:75 656565c840234c5fa4de39df9c0d8e65
+msgid ""
+"In this example, there's only one node and two leaves, and their role "
+"never changes, but in a game of hexapawn, the roles of nodes and leaves "
+"can change quite a lot, so I'll add some more nodes and roots, and you'll"
+" see what I mean."
+msgstr ""
+"Nesse exemplo, só há um vértice e duas folhas, e seus papéis nunca mudam, "
+"mas em um jogo de hexapawn, os papéis dos vértices e das folhas podem mudar "
+"bastante, então eu vou adicionar mais vértices, e você vai entender o que "
+"quero dizer."
+
+#: ../../source/tree.rst:84 923403d514ac42248357cf7ac48c8327
+msgid ""
+"As you can see, depending on how the call stack is filled, the nodes may "
+"assume different roles. The ``node1`` behaves as a node if you're coming "
+"from the ``root1`` or ``root3``, but it becomes a leaf if you pick "
+"``root2``. The same happens with ``node2``: it can be a node if you pick "
+"``root3``, but it becomes a leaf if you pick ``root1``."
+msgstr ""
+"Como você pode ver, dependendo de como a pilha de chamadas é preenchida, "
+"os vértices podem assumir differentes papéis. O ``node1`` se comporta como "
+"vértice se você escolher a rota partindo de ``root1`` ou ``root3``, mas ele "
+"se torna uma folha se você escolher ``root2``. O mesmo acontece com ``node2``: "
+"ele pode ser um vértice se você escolher o caminho partindo de ``root3``, "
+"mas se torna uma folha se você escolher ``root1``."

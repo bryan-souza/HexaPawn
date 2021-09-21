@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Hellstrike12
+# This file is distributed under the same license as the HexaPawn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HexaPawn \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-21 14:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/hexapawn.rst:3 e756ffd9304f481b8db1e60d150f2af5
+msgid "What is Hexapawn?"
+msgstr ""
+
+#: ../../source/hexapawn.rst:5 6c1e8de416d5497882bcbd10a877fc07
+msgid "According to `Wikipedia <https://en.wikipedia.org/wiki/Hexapawn>`_:"
+msgstr ""
+
+#: ../../source/hexapawn.rst:7 628d2329fc784dc291c9703c388ef38c
+msgid ""
+"*\"Hexapawn is a deterministic two-player game invented by Martin "
+"Gardner. It is played on a rectangular board of variable size, for "
+"example on a 3×3 board or on a chessboard. On a board of size n×m, each "
+"player begins with m pawns, one for each square in the row closest to "
+"them. The goal of each player is to advance one of their pawns to the "
+"opposite end of the board or to prevent the other player from moving.\"*"
+msgstr ""
+
+#: ../../source/hexapawn.rst:19 6879394ebbde425bb2ebb59f2818a275
+msgid ""
+"TL;DR: It's an \"oversimplified\" version of chess that uses only pawns "
+"and (generally) a 3x3 chessboard where your objective is to get to the "
+"other side of the board OR capture all of your enemy's pawns. And yes, "
+"this version was made in a way that you'll always lose (sorry for that), "
+"but the fun part is understanding how simple yet amazing AIs can be."
+msgstr ""
+
+#: ../../source/hexapawn.rst:29 d3d472f125744f24b62f0128a15c7c1a
+msgid ""
+"The primer for this project was `this "
+"<https://www.youtube.com/watch?v=sw7UAZNgGg8&vl>`_ video made by Kevin "
+"(Vsauce2), go check it out! (English only)"
+msgstr ""
+
+#: ../../source/hexapawn.rst:31 f279dec3bab94b30bf40f3338ad4e56f
+msgid "Now that you know the game basics, let's get started with the fun part: AI"
+msgstr ""
+

@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Hellstrike12
+# This file is distributed under the same license as the HexaPawn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HexaPawn \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-21 14:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/tree.rst:3 193c8d660062464587b642d5b16c46c2
+msgid "Nodes, Leaves and Trees"
+msgstr ""
+
+#: ../../source/tree.rst:6 05900944da0e48dabe60ea2d2be0aa4c
+msgid "Trees"
+msgstr ""
+
+#: ../../source/tree.rst:8 fc87a273a5ca4c878eae08b83a019a80
+msgid ""
+"The first core concept you'll need to understand is how Trees work. And "
+"no, I'm not talking about organic trees, I'm talking about coded trees. "
+"If you run the game, play for a little while, then check the ``plots`` "
+"folder, you'll see something like this:"
+msgstr ""
+
+#: ../../source/tree.rst:19 1e5e2877df654d62803dfc5489f2966f
+msgid "Then you may be thinking: *\"WTF is this??\"*"
+msgstr ""
+
+#: ../../source/tree.rst:21 28a9d989c0594f80aa7d431219b52b79
+msgid ""
+"This, although it may not seem, it is a coded tree (well, not really, "
+"this is in fact a graphical representation of a coded tree). This tree "
+"represents all game movements and its respective children (the moves that"
+" can be made at the given move state). TL;DR: A tree is a collection of "
+"nodes, which indicates the last move and the color that made it, and "
+"which moves can be made after that."
+msgstr ""
+
+#: ../../source/tree.rst:34 cd3aaaa939d543ea8912181781249eac
+msgid "Nodes & Leaves"
+msgstr ""
+
+#: ../../source/tree.rst:36 4145a6742dd84e22ae14ce99c4709e74
+msgid ""
+"Nodes are basically variables that store the last move and all movements "
+"that can be made at the given game state. If you check the code, you'll "
+"see at the ``ai.py`` module, this code piece:"
+msgstr ""
+
+#: ../../source/tree.rst:47 1ce938d902dc4b2d86f419d607d21a20
+msgid ""
+"This code creates instances of Node objects that store the infos we've "
+"already covered."
+msgstr ""
+
+#: ../../source/tree.rst:50 b26327d23eff41178fd9a0cd683f3959
+msgid "*So what?*"
+msgstr ""
+
+#: ../../source/tree.rst:52 3b28d8c3621b4c81b6bc9f6c55946955
+msgid ""
+"Nodes are Node objects that have anything different than an empty list "
+"([]) as its ``children`` parameter. When it's not an empty list, it "
+"should be filled with pre calculated move possibilites, represented by "
+"their respective movecodes."
+msgstr ""
+
+#: ../../source/tree.rst:59 cb463408f3444d209dd1c305c637be10
+msgid ""
+"When the children parameter equals to an empty list, this means that this"
+" node is an end node, a. k. a. Leaf. What this really means is that, "
+"after this node, no move can be made anymore, because one of the sides "
+"has won, causing a game reset."
+msgstr ""
+
+#: ../../source/tree.rst:66 f5fa8d2f56a648778d41c6ad309c8e6c
+msgid ""
+"But these concepts are completely realtive to the move call stack, "
+"because a node can turn into a leaf, and a leaf can turn into a node, "
+"depending on how the game evolves. Consider this:"
+msgstr ""
+
+#: ../../source/tree.rst:75 656565c840234c5fa4de39df9c0d8e65
+msgid ""
+"In this example, there's only one node and two leaves, and their role "
+"never changes, but in a game of hexapawn, the roles of nodes and leaves "
+"can change quite a lot, so I'll add some more nodes and roots, and you'll"
+" see what I mean."
+msgstr ""
+
+#: ../../source/tree.rst:84 923403d514ac42248357cf7ac48c8327
+msgid ""
+"As you can see, depending on how the call stack is filled, the nodes may "
+"assume different roles. The ``node1`` behaves as a node if you're coming "
+"from the ``root1`` or ``root3``, but it becomes a leaf if you pick "
+"``root2``. The same happens with ``node2``: it can be a node if you pick "
+"``root3``, but it becomes a leaf if you pick ``root1``."
+msgstr ""
+

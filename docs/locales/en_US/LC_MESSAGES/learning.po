@@ -1,0 +1,238 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Hellstrike12
+# This file is distributed under the same license as the HexaPawn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HexaPawn \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-21 14:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/learning.rst:6 baebd8101cea42069647c6ecd418e2bd
+msgid "Learning to learn"
+msgstr ""
+
+#: ../../source/learning.rst:8 dcf088d58cb44d09befbfe536ed62e7f
+msgid ""
+"In this section, I'll explain more about how the AI can learn by playing "
+"with you. I've used 3 types of \"learning algorithms\" in this project: "
+"Inclusive, Exclusive and Both. When you open the game, you can change the"
+" default algorithm and see how their graphs differ from each other. If "
+"you're lazy and don't want to lose to my fearsome AI, that's okay (even I"
+" am tired of losing that thing), just stick with me and you'll understand"
+" the magic behind the monster."
+msgstr ""
+
+#: ../../source/learning.rst:21 e48f32ccab01497cac71a11822b56bbb
+msgid "How do humans learn?"
+msgstr ""
+
+#: ../../source/learning.rst:23 97f1e8ac451547dc96b149b8f25c8b4c
+msgid ""
+"Remember when you was a kid and you wanted so much that bar of chocolate,"
+" but your mom said: \"NO!\"? At that moment, you learned that sometimes, "
+"you can't have everything you want whenever you want. That's one way we "
+"lovely humans can learn, but there are another ways (just two, to be "
+"honest) that are more interesting if you think like a programmer."
+msgstr ""
+
+#: ../../source/learning.rst:32 4361b524f7df41bf8a9f84874c37c6b4
+msgid ""
+"The first one is the learning by reward. This kind of happens every year "
+"when an entity called \"Santa Claus\" rewards children based on their "
+"behaviour along the year. If you were a good boy/girl, you were rewarded "
+"with a new bicycle, a brand new `Nintendo 64 "
+"<https://www.youtube.com/watch?v=pFlcqWQVVuU>`_ (pun intended), or "
+"anything like that. After opening the presents under the christmas tree, "
+"you learn that being a nice person can be rewarding, so you'll look "
+"forward being a nice person every year."
+msgstr ""
+
+#: ../../source/learning.rst:43 7e2e0c4867664beb9f924cb378828eb8
+msgid ""
+"Keeping up with the christmas example (and spirit :D), the other way of "
+"learning is based on punishment. Remember when I said that only the good "
+"boys/girls won cool presents? That's right, the bad boys/girls don't get "
+"anything, but their friends do. And when they go outside to play and see "
+"the cool things their neighbors got by just being nice, they may be "
+"tempted to change their behaviour the next year and get some presents too"
+" (or they may get mad at Mr. Santa Claus, start growing green hair and "
+"change their names to *Grinch*)."
+msgstr ""
+
+#: ../../source/learning.rst:56 94c91441d410438fb2950f781256906b
+msgid "Meet Mr. Hippocampus"
+msgstr ""
+
+#: ../../source/learning.rst:58 f36187a37a9d4f87be6e6edda7d8758e
+msgid ""
+"Well, now that you know about how the human learning process works, you "
+"shall teach your computer how to learn too."
+msgstr ""
+
+#: ../../source/learning.rst:62 11dd9b89a04e477aa3ba661f012993d2
+msgid ""
+"To start simple, we'll pick the game of hexapawn as a learning base. The "
+"main reason for this is that hexapawn's moves are pretty simple to "
+"predict, and by knowing every single way that the game may end, helps "
+"like, a lot, because you can see if your AI is truly learning how to play"
+" or not."
+msgstr ""
+
+#: ../../source/learning.rst:69 2e6c242580f24e26a937caef6130bd45
+msgid "So, let's start by calculating all game moves:"
+msgstr ""
+
+#: ../../source/learning.rst:76 2745e987548a4528bf0492beaab639e7
+msgid ""
+"That's a lot of code right? But don't worry, it's actually pretty simple "
+"to understand."
+msgstr ""
+
+#: ../../source/learning.rst:79 fe03f62ab1db4610b78a65d52f77ad56
+msgid ""
+"When started, the function will simulate the game state based on the "
+"given movecode using the ``self.judge`` object within the Ai class. The "
+"judge will execute the given movecode and then, the algorithm will check "
+"all possible capture movements for the opposing color (if the last move "
+"was a white pawn move, it'll check for all possible moves for the black "
+"pawns, and so on), generating a list of strings (movecodes). Then, the "
+"algorithm will run the ``__make_nodes()`` function again, carrying the "
+"given movecode plus one member of the children list (the list of possible"
+" moves) and do all this process again and again, until it reaches a leaf "
+"(a game state where someone win). In this case, it'll return a Node "
+"object containing no children at all, which causes the application call "
+"stack (its PROGRAM CALL STACK, not MOVE CALL STACK. They're very "
+"different things) to go back one level (the process is kept open until "
+"all possible trees have been solved, i.e. reached a leaf) and solve the "
+"next children (sorry, I can't explain how a function that keeps calling "
+"itself until some condition is met properly)."
+msgstr ""
+
+#: ../../source/learning.rst:102 ca2b11ab826d46caaf6601fa0689904c
+msgid ""
+"When all trees. subtrees, nodes and leaves are found, tested and "
+"computed, you get that crazy image that you saw in the last chapter."
+msgstr ""
+
+#: ../../source/learning.rst:106 c27232e51362459abd845bedf6a461a0
+msgid ""
+"If you understood what I tried to say above, congratulations, you teached"
+" your computer how to remember things and gave it some kind of \"brain\"."
+" The only sad part is that it'll \"think\" randomly and will never become"
+" self sentient and conquer the world."
+msgstr ""
+
+#: ../../source/learning.rst:114 fb4df4fd66824214987a74c2df05714f
+msgid "Mitosis"
+msgstr ""
+
+#: ../../source/learning.rst:116 219a5e428d5f4cf095491b1cb3809c2f
+msgid "*Cell division time! Yay.*"
+msgstr ""
+
+#: ../../source/learning.rst:118 a99e782dd43341709032bbfebbcc4df3
+msgid "Well, not really."
+msgstr ""
+
+#: ../../source/learning.rst:120 a0e5609841584568adba90696378cca6
+msgid ""
+"Remember when I mentioned an \"Inclusive\" learning method? It's very "
+"similar to cell division and duplication (a. k. a. Mitosis)."
+msgstr ""
+
+#: ../../source/learning.rst:124 a6911e24a818420599452ebf4ffb4db6
+msgid ""
+"Imagine that the \"brain\" that we gave to our little frankenstein is "
+"made of genuine biological cells. Now imagine that everytime a cell is "
+"identified as \"good\", the brain forces it to make mitosis and create "
+"clones of that cell, so your brain will incompusively use them more often"
+" and making the chance of them being chosen greater. (just imagine, "
+"because that's not what really happens under the hood when you learn "
+"something)."
+msgstr ""
+
+#: ../../source/learning.rst:134 8759d61572d44a009e5d0a13004e8ad4
+msgid ""
+"Well, yes, this is in fact a way of learning, but there's one big problem"
+" with it: the chances of choosing a \"bad\" node is minimal, but never "
+"zero, because the bad nodes are kept inside the brain, and it may be "
+"randomly picked by the AI. So this may work, but it's not the best option"
+" if you want a 100% accurate AI to play with."
+msgstr ""
+
+#: ../../source/learning.rst:142 94bf8088c40e4aafb515f70387be1ff6
+msgid "So let's meet Mrs. Lobotomy"
+msgstr ""
+
+#: ../../source/learning.rst:145 79b99fe619794584bb302c2e5be95c24
+msgid "Lobotomy"
+msgstr ""
+
+#: ../../source/learning.rst:147 60c19cb68c6e484a8735c08ace24b0e9
+msgid ""
+"For those who don't know, lobotomy is a neurological surgery which gets "
+"your hippocampus (long-term memory) removed from your brain. The analogy "
+"works here too. Remember the \"Exclusive\" method? That's right, cutting "
+"time!"
+msgstr ""
+
+#: ../../source/learning.rst:153 21d355d529f04604b3df117f1bd1f653
+msgid ""
+"This method will remove every single cell that is identified as \"bad\" "
+"from the brain, preventing it to make errors. So every time a losing node"
+" is identified, it'll be removed from the \"brain\" and will no longer be"
+" possible to be made by the Ai."
+msgstr ""
+
+#: ../../source/learning.rst:159 09a2fa11083841a3bf944577b1bd2225
+msgid "Sounds a lot better than mitosis, right?"
+msgstr ""
+
+#: ../../source/learning.rst:161 db847302d7214eb6b25e068bc867644d
+msgid ""
+"Well, it is and it isn't. Sure, it prevents the Ai to repeat the same "
+"errors every time, but takes a lot of time to test and find every single "
+"game possibility, thus creating the perfect hexapawn Ai."
+msgstr ""
+
+#: ../../source/learning.rst:166 d49674d02ec84d54afdaa64415d0f6b1
+msgid "But what if we mix and match both methods?"
+msgstr ""
+
+#: ../../source/learning.rst:169 04761ec6a585472dad744d0afa44c405
+msgid "Two-Face (a. k. a. Harvey Dent)"
+msgstr ""
+
+#: ../../source/learning.rst:171 6d7eb173936b478ab39afe7dc5a1202b
+msgid ""
+"By mixing both methods, our AI will be capable of removing the nodes that"
+" result in a loss, while duplicating nodes that result in a win. So we "
+"are basically decreasing the rate of error and increasing our chance of "
+"winning at the same time, cool isn't it? Just be sure Mr. Dent over here "
+"gets too cocky and stars flipping coins to decide which color wins and "
+"which color loses; if that happens: call the Bats right away!"
+msgstr ""
+
+#: ../../source/learning.rst:181 f37c937d9e2242948772dd191226d2f9
+msgid "Final Thoughts"
+msgstr ""
+
+#: ../../source/learning.rst:183 8a223d639f60404985136c0dc5ee224c
+msgid ""
+"I hope you understood what i tried to say about the learning process of "
+"this AI, and if you want my advice: test it, and test it *a lot*. Enable "
+"plotting in the `config.json` file and see for yourself how the AI's "
+"\"brain\" changes throughout the generations! It's a cool experience, "
+"even better when you understand what is happening and why it's happening."
+msgstr ""
+

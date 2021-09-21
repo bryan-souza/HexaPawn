@@ -1,0 +1,35 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Hellstrike12
+# This file is distributed under the same license as the HexaPawn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HexaPawn \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-21 14:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/ui.rst:2 e15911260b514f429c461afd4447b7aa
+msgid "ui module"
+msgstr ""
+
+#: 7645657b99464ba4b2cd38e83e807bfd of ui:1
+msgid "HexaPawn ui module"
+msgstr ""
+
+#: 8d23c32836c540e5b939dc8e0ece2661 of ui:3
+msgid "Stores UI (User Interface) manager and UI objects"
+msgstr ""
+
+#: 98ce9fd633334a5cb73a3b9da654a966 of ui.UI:1
+msgid "Bases: :class:`object`"
+msgstr ""
+
