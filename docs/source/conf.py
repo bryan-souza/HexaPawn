@@ -24,7 +24,7 @@ author = 'Hellstrike12'
 
 
 # -- General configuration ---------------------------------------------------
-
+locale_dirs = ['../locales/']
 gettext_compact = False
 gettext_uuid = True
 

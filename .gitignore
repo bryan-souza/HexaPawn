@@ -2,5 +2,5 @@
 .vscode/
 plots/
 __pycache__/
-docs/__build/
+docs/_build/
 docs/source/_templates/
