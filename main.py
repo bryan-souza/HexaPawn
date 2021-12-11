@@ -176,7 +176,7 @@ class Game():
                     # like a close button when the gane is in fullscreen
                     if (event.type == pygame.QUIT):
                         if (self.config['enable_plots']): self.ai.plot()
-                        running = False  # Change the running state of the game
+                        self.running = False  # Change the running state of the game
 
                     # Keyboard events
                     if (event.type == pygame.KEYDOWN):
@@ -250,7 +250,7 @@ class Game():
                     self.update() # Show the result
                     self.judge.reset()
                     self.update() # Reset pawn positions
-                
+
         except:
             print( self.achievements['0x42'] )
 
